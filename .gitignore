@@ -46,10 +46,6 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
-# only ignore meta of directory
-*.meta
-# not include the meta of file
-!*.*.meta
 
 # Unity3D generated meta files
 *.pidb.meta
