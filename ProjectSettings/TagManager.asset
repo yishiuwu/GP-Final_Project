@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Exit
   - Fan
+  - GameManager
   layers:
   - Default
   - TransparentFX
