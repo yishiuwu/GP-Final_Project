@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(DontBreak))]
 [RequireComponent(typeof(SceneTransition))]
@@ -18,9 +20,9 @@ public class GameManager : MonoBehaviour
         sceneTransition = GetComponent<SceneTransition>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Leave() {
+        Application.Quit();
     }
+
+    
 }

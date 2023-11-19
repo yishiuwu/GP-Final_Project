@@ -10,10 +10,13 @@ public class Stage : MonoBehaviour
     public event Action OnRestart;  // restart the stage (transition effect -> call onStart)
     public event Action OnWin;      // win effect -> call win menu
     public event Action OnTogglePause; // toggle pause
-    // Start is called before the first frame update
-    void Start()
-    {
+    
+    void Start() {
         GameManager.currentStage = this;
+    }
+
+    void OnDestroy() {
+        GameManager.currentStage = null;
     }
 
     // Update is called once per frame
@@ -22,5 +25,21 @@ public class Stage : MonoBehaviour
         
     }
 
+    public void TogglePause() {
+        OnTogglePause?.Invoke();
+    }
+
+    public void Win() {
+        OnWin?.Invoke();
+    }
+
+    public void Restart() {
+        OnRestart?.Invoke();
+    }
+
+    // for debug
+    public void Leave() {
+        
+    }
     
 }
