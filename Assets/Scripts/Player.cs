@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public StatusSystem status;
@@ -8,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     public event System.EventHandler<StatusEventArgs> StatusChanging;
     private Rigidbody2D rb;
+    private int moveDir = 0;
     void Start()
     {
         // Anim = GetComponent<Animator>();
@@ -21,21 +23,24 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(!status.isMelted){
-            if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
-                transform.Translate(moveSpeed*Time.deltaTime,0,0);
-                GetComponent<SpriteRenderer>().flipX = true;
-                SetRunning(true);
-            }else if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
-                transform.Translate(-moveSpeed*Time.deltaTime,0,0);
-                GetComponent<SpriteRenderer>().flipX = false;
-                SetRunning(true);
-            }else{
-                SetRunning(false);
-            }
+            // if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
+            //     transform.Translate(moveSpeed*Time.deltaTime,0,0);
+            //     GetComponent<SpriteRenderer>().flipX = true;
+            //     SetRunning(true);
+            // }else if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
+            //     transform.Translate(-moveSpeed*Time.deltaTime,0,0);
+            //     GetComponent<SpriteRenderer>().flipX = false;
+            //     SetRunning(true);
+            // }else{
+            //     SetRunning(false);
+            // }
 
             // if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)){
             //     Jump();
             // }
+            if(moveDir != 0){
+                transform.Translate(moveDir*moveSpeed*Time.deltaTime,0,0);
+            }
         }else{
             if(audioCtr.fanOn){
                 BeMove(Vector2.left, 5f);
@@ -44,9 +49,9 @@ public class Player : MonoBehaviour
         }
         
 
-        if(Input.GetKeyDown(KeyCode.Space)){
-            PlayerMelt();
-        }
+        // if(Input.GetKeyDown(KeyCode.Space)){
+        //     PlayerMelt();
+        // }
 
         if(status.isWin){
             Color color = GetComponent<SpriteRenderer>().color;
@@ -60,12 +65,38 @@ public class Player : MonoBehaviour
             PlayerWin();
         }
     }
-
-    
-    public void PlayerMelt(){
-        if(this.StatusChanging != null){
-            StatusChanging(this, new StatusEventArgs(StatusEventArgs.ActType.Melt, "player", 0));
+    public void RunLeft(InputAction.CallbackContext ctx){
+        if(ctx.performed){
+            if(status.isMelted) return;
+            // transform.Translate(-moveSpeed*Time.deltaTime,0,0);
+            moveDir = -1;
+            GetComponent<SpriteRenderer>().flipX = false;
+            SetRunning(true);
+        }else if(ctx.canceled){
+            moveDir = 0;
+            SetRunning(false);
         }
+    }
+    public void RunRight(InputAction.CallbackContext ctx){
+        if(ctx.performed){
+            if(status.isMelted) return;
+            // transform.Translate(moveSpeed*Time.deltaTime,0,0);
+            moveDir = 1;
+            GetComponent<SpriteRenderer>().flipX = true;
+            SetRunning(true);
+        }else if(ctx.canceled){
+            moveDir = 0;
+            SetRunning(false);
+        }
+    }
+    
+    public void PlayerMelt(InputAction.CallbackContext ctx){
+        if(ctx.performed){
+            if(this.StatusChanging != null){
+                StatusChanging(this, new StatusEventArgs(StatusEventArgs.ActType.Melt, "player", 0));
+            }
+        }
+        
     }
     public void PlayerWin(){
         if(this.StatusChanging != null){

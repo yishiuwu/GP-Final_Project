@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Jumper : MonoBehaviour
 {
@@ -20,13 +21,13 @@ public class Jumper : MonoBehaviour
     // public event System.Action onJump;
     void Start(){}
     void Update(){
-        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)){
+        // if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)){
             
-            if(JumpTime > 0 && !playerState.isMelted){
-                Jump();
-            }   
+        //     if(JumpTime > 0 && !playerState.isMelted){
+        //         Jump();
+        //     }   
     
-        }
+        // }
     }
     protected virtual void DoJump(){
         JumpTime -= 1;
@@ -36,11 +37,13 @@ public class Jumper : MonoBehaviour
         // onJump?.Invoke();
        
     }
-    public void Jump(){
-        if(!canJump){
-            return;
-        } 
-        DoJump();
+    public void Jump(InputAction.CallbackContext ctx){
+        if(ctx.performed){
+            if(!(canJump&& JumpTime > 0 && !playerState.isMelted)){
+                return;
+            } 
+            DoJump();
+        }
     }
     private void Awake() {
         TryGetComponent<Rigidbody2D>(out rb);
