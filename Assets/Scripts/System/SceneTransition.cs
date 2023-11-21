@@ -12,6 +12,8 @@ public class SceneTransition : MonoBehaviour
     public float transistDuration = 1;
     ColorEffect colorEffect;
     GameManager gameManager;
+
+    bool isLoading;
     
     // private static SceneTransition instance = null;
     void Awake()
@@ -19,6 +21,7 @@ public class SceneTransition : MonoBehaviour
         // instance = this;
         colorEffect = GetComponentInChildren<ColorEffect>();
         gameManager = GetComponent<GameManager>();
+        isLoading = false;
         // Debug.Log(instance);
         // Debug.Log(colorEffect);
     }
@@ -43,8 +46,10 @@ public class SceneTransition : MonoBehaviour
     }
 
     public void ChangeScene(String sceneName) {
+        if (isLoading) return;
         Debug.Log("Change to scene: " + sceneName);
-        // todo: add callback (end effect) 
+        // todo: add callback (end effect)
+        isLoading = true; 
         StartCoroutine(Loading(sceneName));
     }
 
@@ -78,6 +83,7 @@ public class SceneTransition : MonoBehaviour
             yield return null;
         }
         callback?.Invoke();
+        isLoading = false;
     }
     ///// DEBUG /////
 }

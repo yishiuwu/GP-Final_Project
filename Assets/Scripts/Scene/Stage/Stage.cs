@@ -13,6 +13,7 @@ public class Stage : MonoBehaviour
     
     void Start() {
         GameManager.currentStage = this;
+        FindObjectOfType<GameManager>().upperScene = "StageSelect";
     }
 
     void OnDestroy() {

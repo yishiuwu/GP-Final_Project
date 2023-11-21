@@ -6,7 +6,7 @@
             "id": "97da4c42-52eb-4b47-8c15-c48d372475ac",
             "actions": [
                 {
-                    "name": "Pause",
+                    "name": "Escape",
                     "type": "Button",
                     "id": "835b386c-24c1-49a8-985c-e9acff82f15f",
                     "expectedControlType": "Button",
@@ -23,7 +23,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

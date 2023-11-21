@@ -12,12 +12,16 @@ public class GameControlInputManager : MonoBehaviour
     [SerializeField]
     InputActionReference Pause;
     
+    private void Awake() {
+        // GameManager gameManager = FindObjectOfType<GameManager>();
+        // Pause.action.performed += (action)=>{
+        //     gameManager.ChangeScene(gameManager.upperScene);
+        // };
+    }
     // Start is called before the first frame update
     void Start()
     {
-        Pause.action.performed += (action)=>{
-            if (GameManager.currentStage) GameManager.sceneTransition.ChangeScene("StageSelect");
-        };
+        
     }
 
     // Update is called once per frame

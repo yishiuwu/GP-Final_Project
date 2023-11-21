@@ -90,8 +90,7 @@ GameObject:
   - component: {fileID: 3162872359221785053}
   - component: {fileID: 3162872359221785054}
   - component: {fileID: 3162872359221785055}
-  - component: {fileID: 3162872359221785026}
-  - component: {fileID: 3162872359221785025}
+  - component: {fileID: 3074516357578802806}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -140,7 +139,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &3162872359221785052
 MonoBehaviour:
@@ -194,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9d13c5502cf4f4a9dcbfacef3ee121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upperScene: 
 --- !u!114 &3162872359221785055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transistDuration: 1
---- !u!114 &3162872359221785026
+--- !u!114 &3074516357578802806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,22 +216,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 3162872359221785049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8269a5c8daf8f14f82f550e7eb2c11a, type: 3}
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3162872359221785025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3162872359221785049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a1401bfbdcdcd1418539730eb8eeb80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pause: {fileID: -2010103707996711166, guid: b82a8002a313e234f97a607847cf5d4f, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: b82a8002a313e234f97a607847cf5d4f, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 835b386c-24c1-49a8-985c-e9acff82f15f
+    m_ActionName: UI/Escape[/Keyboard/escape]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &3162872359714931619
 GameObject:
   m_ObjectHideFlags: 0
