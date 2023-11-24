@@ -10,10 +10,22 @@ public class Stage : MonoBehaviour
     public event Action OnRestart;  // restart the stage (transition effect -> call onStart)
     public event Action OnWin;      // win effect -> call win menu
     public event Action OnTogglePause; // toggle pause
-    
+
+    public string nextStage;
+
+    [Space]
+    [SerializeField]
+    private GameObject pauseMenu;
+    [SerializeField]
+    private GameObject winMenu;
+
     void Start() {
         GameManager.currentStage = this;
         FindObjectOfType<GameManager>().upperScene = "StageSelect";
+        pauseMenu.SetActive(false);
+        winMenu.SetActive(false);
+        OnTogglePause += ()=>{pauseMenu.SetActive(!pauseMenu.activeSelf);};
+        OnWin += ()=>{winMenu.SetActive(true);};
     }
 
     void OnDestroy() {
@@ -38,9 +50,11 @@ public class Stage : MonoBehaviour
         OnRestart?.Invoke();
     }
 
-    // for debug
-    public void Leave() {
-        
+    public void NextStage() {
+        GameManager.sceneTransition.ChangeScene(nextStage);
+    }
+    public void LeaveStage() {
+        GameManager.sceneTransition.ChangeScene("StageSelect");
     }
     
 }
