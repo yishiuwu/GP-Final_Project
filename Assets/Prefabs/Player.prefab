@@ -155,8 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: {fileID: 0}
-  audioCtr: {fileID: 0}
-  moveSpeed: 5
+  moveSpeed: 3
 --- !u!114 &7301826141327340449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,9 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winSound: {fileID: 8300000, guid: ffca76f5bf8eb624e84b337448d7ba1a, type: 3}
-  fanSound: {fileID: 8300000, guid: 5f2880192efbc8d41bf5d10505d4e1ea, type: 3}
-  fanOn: 0
-  FanLeaf: {fileID: 0}
+  walkSound: {fileID: 8300000, guid: a64fd5a2244d7d942bc324bfb5a22c75, type: 3}
 --- !u!82 &7301826141327340451
 AudioSource:
   m_ObjectHideFlags: 0
@@ -214,7 +211,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.8337076
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

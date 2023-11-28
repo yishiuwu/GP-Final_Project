@@ -30,6 +30,9 @@ public class Jumper : MonoBehaviour
         // }
     }
     protected virtual void DoJump(){
+        if(!(canJump&& JumpTime > 0 && !playerState.isMelted)){
+                return;
+        } 
         JumpTime -= 1;
         jumpStartTime = Time.fixedTime;
         // Initial impulse
@@ -61,6 +64,6 @@ public class Jumper : MonoBehaviour
             }
             else rb.velocity = new Vector2(rb.velocity.x, jumpCurve.Evaluate(t)*20f);
         }
-        if(collisionState.grounded) JumpTime = 3;
+        if(collisionState.grounded) JumpTime = 1;
     }
 }
