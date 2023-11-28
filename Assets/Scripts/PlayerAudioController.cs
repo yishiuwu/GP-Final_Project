@@ -9,9 +9,10 @@ public class PlayerAudioController : MonoBehaviour
     // [SerializeField] public AudioClip jumpSound;
     public AudioClip winSound;
     // public AudioClip loseSound;
-    public AudioClip fanSound;
-    public bool fanOn = false;
-    public GameObject FanLeaf;
+    
+    public AudioClip walkSound;
+    private bool walkSoundPlaying = false;
+    
     private AudioSource myAudioSource;
     private StatusSystem playerstate;
     bool wincanplay = true;
@@ -22,38 +23,34 @@ public class PlayerAudioController : MonoBehaviour
         playerstate = GetComponent<StatusSystem>();
     }
     void Update(){
-        if(fanOn){
-            FanLeaf.GetComponent<Animator>().SetBool("FanOn", true);
-        }else{
-            FanLeaf.GetComponent<Animator>().SetBool("FanOn", false);
-        }
+        
         if(playerstate.isWin && wincanplay) {
             myAudioSource.PlayOneShot(winSound);
             wincanplay = false;
             StartCoroutine(WaitForReplayWin());
         }
-        
-    }
-    void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.tag=="Fan" && !playerstate.isMelted){
-            
-            if(fanOn){
-               myAudioSource.Stop(); 
-               myAudioSource.loop = false;
-            }else{
-                myAudioSource.loop = true;
-                myAudioSource.clip = fanSound;
-                myAudioSource.Play();
-                
-            }
-            fanOn = !fanOn;
+        if(playerstate.isRunning && !walkSoundPlaying){
+            myAudioSource.loop = true;
+            myAudioSource.clip = walkSound;
+            myAudioSource.Play();
+            walkSoundPlaying = true;
+        }else{
+            StartCoroutine(WaitForReplayWalk());
             
         }
-
     }
+    
     IEnumerator WaitForReplayWin(){
         yield return new WaitForSeconds(3f);
         wincanplay = true;
         SceneManager.LoadScene("WinSceneTemp");
+    }
+    IEnumerator WaitForReplayWalk(){
+        yield return new WaitForSeconds(1f);
+        if(!playerstate.isRunning && walkSoundPlaying){
+            walkSoundPlaying = false;
+            myAudioSource.loop = false;
+            myAudioSource.Stop();
+        } 
     }
 }

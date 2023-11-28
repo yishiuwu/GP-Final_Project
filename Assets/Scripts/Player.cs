@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public StatusSystem status;
-    public PlayerAudioController audioCtr;
+    // public PlayerAudioController audioCtr;
     [SerializeField] private float moveSpeed = 5f;
     public event System.EventHandler<StatusEventArgs> StatusChanging;
     private Rigidbody2D rb;
@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
         // Anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         status = GetComponent<StatusSystem>();
-        audioCtr = GetComponent<PlayerAudioController>();
+        // audioCtr = GetComponent<PlayerAudioController>();
         
     }
 
@@ -55,11 +55,23 @@ public class Player : MonoBehaviour
                 transform.Translate(moveDir*moveSpeed*Time.deltaTime,0,0);
             }
         }else{
-            if(audioCtr.fanOn){
-                BeMove(Vector2.left, 5f);
-            }
+            // if(audioCtr.fanOn){
+            //     BeMove(Vector2.left, 5f);
+            // }
             SetRunning(false);
         }
+    }
+    void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.tag=="InteractiveObj" && !status.isMelted){
+            
+            InteractiveObj interactiveObj = other.gameObject.GetComponent<InteractiveObj>();
+            if (interactiveObj != null)
+            {
+                interactiveObj.Interact();
+            }
+            
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -123,9 +135,9 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0f); // 將垂直速度歸零，防止累積
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
-    void BeMove(Vector2 direction, float force){
-        rb.AddForce(direction * force);
-    }
+    // void BeMove(Vector2 direction, float force){
+    //     rb.AddForce(direction * force);
+    // }
     
 
 }
