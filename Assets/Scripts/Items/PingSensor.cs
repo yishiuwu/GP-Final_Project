@@ -18,10 +18,11 @@ public class PingSensor : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D other){
+    void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.tag == "Player"){
             // Ping.transform.Translate(Vector2.left*10*Time.deltaTime,0,0);
-            Ping.GetComponent<Ping>().Move();
+            Debug.Log("get player");
+            Ping.gameObject.GetComponent<Ping>().Move();
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ping : MonoBehaviour
 {
-    public float moveSpeed = 3.0f;
+    public float moveSpeed = 1.0f;
     private bool isMoving = false;
 
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class Ping : MonoBehaviour
     void Update()
     {
         if(this.isMoving){
-            // transform.Translate(moveSpeed * Vector2.left * Time.deltaTime, 0, 0);
+            transform.Translate(moveSpeed * -1 * Time.deltaTime, 0, 0);
         }
     }
 
@@ -39,8 +39,11 @@ public class Ping : MonoBehaviour
     }
 
     public void Move(){
+        Debug.Log("call Move");
+        Debug.Log(isMoving);
         if(!isMoving){
-            StartMoveTimeCounter(1, ()=>{isMoving = false;});
+            Debug.Log("start move time counter");
+            StartCoroutine(StartMoveTimeCounter(0.2f, ()=>{isMoving = false;}));
         }
     }
 }

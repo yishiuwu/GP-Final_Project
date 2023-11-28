@@ -22,6 +22,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if(Input.GetKeyDown(KeyCode.Space)){
+        //     PlayerMelt();
+        // }
+
+        if(status.isWin){
+            Color color = GetComponent<SpriteRenderer>().color;
+            color.a = 0;
+            GetComponent<SpriteRenderer>().color = color;
+            
+        }
+    }
+
+    void FixedUpdate(){
         if(!status.isMelted){
             // if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
             //     transform.Translate(moveSpeed*Time.deltaTime,0,0);
@@ -47,19 +60,8 @@ public class Player : MonoBehaviour
             }
             SetRunning(false);
         }
-        
-
-        // if(Input.GetKeyDown(KeyCode.Space)){
-        //     PlayerMelt();
-        // }
-
-        if(status.isWin){
-            Color color = GetComponent<SpriteRenderer>().color;
-            color.a = 0;
-            GetComponent<SpriteRenderer>().color = color;
-            
-        }
     }
+
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.tag=="Exit" && status.isMelted){
             PlayerWin();
