@@ -24,6 +24,8 @@ public class Stage : MonoBehaviour
         FindObjectOfType<GameManager>().upperScene = "StageSelect";
         pauseMenu.SetActive(false);
         winMenu.SetActive(false);
+
+        OnRestart += ()=>{OnStart?.Invoke();}; // need change scene effect
         OnTogglePause += ()=>{pauseMenu.SetActive(!pauseMenu.activeSelf);};
         OnWin += ()=>{winMenu.SetActive(true);};
     }

@@ -40,8 +40,9 @@ public class SceneTransition : MonoBehaviour
         if (colorEffect) {
             // white -> clear
             colorEffect.SetColor(Color.white);
-            colorEffect.SetFadeColor(Color.clear);
-            colorEffect.SetFadeDuration(transistDuration);
+            // colorEffect.SetFadeColor(Color.clear);
+            // colorEffect.SetFadeDuration(transistDuration);
+            colorEffect.StartFade(Color.clear, transistDuration);
         }
     }
 
@@ -50,7 +51,10 @@ public class SceneTransition : MonoBehaviour
         Debug.Log("Change to scene: " + sceneName);
         // todo: add callback (end effect)
         isLoading = true; 
-        StartCoroutine(Loading(sceneName));
+        colorEffect.StartFade(Color.white, transistDuration, ()=>{
+            StartCoroutine(Loading(sceneName));
+        });
+        // StartCoroutine(Loading(sceneName));
     }
 
 
