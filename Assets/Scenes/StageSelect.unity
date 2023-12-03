@@ -266,6 +266,10 @@ PrefabInstance:
       propertyPath: upperScene
       value: Main
       objectReference: {fileID: 0}
+    - target: {fileID: 3162872359714931616, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3162872359221785025, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
