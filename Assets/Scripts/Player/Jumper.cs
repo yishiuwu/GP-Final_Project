@@ -16,7 +16,7 @@ public class Jumper : MonoBehaviour
     public bool isRising => !isFalling && !collisionState.grounded;
     public bool isFalling => rb.velocity.y <= 0 && !collisionState.grounded;
     private int JumpTime = 1;
-    public virtual bool canJump => JumpTime > 0;
+    public virtual bool canJump => collisionState.grounded;
     private StatusSystem playerState ;
     // public event System.Action onJump;
     void Start(){}
@@ -30,7 +30,7 @@ public class Jumper : MonoBehaviour
         // }
     }
     protected virtual void DoJump(){
-        if(!(canJump&& JumpTime > 0 && !playerState.isMelted)){
+        if(!(canJump&& !playerState.isMelted)){//&& JumpTime > 0 
                 return;
         } 
         JumpTime -= 1;
@@ -42,7 +42,7 @@ public class Jumper : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext ctx){
         if(ctx.performed){
-            if(!(canJump&& JumpTime > 0 && !playerState.isMelted)){
+            if(!(canJump&& !playerState.isMelted)){//&& JumpTime > 0 
                 return;
             } 
             DoJump();
