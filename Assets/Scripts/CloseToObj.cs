@@ -38,9 +38,9 @@ public class CloseToObj : MonoBehaviour
             // 使用 Vector2.Distance 來計算 2D 空間中的距離
             float distance =  CalculateDistance(playerCollider, objCollider);
             //float distance = (obj.position - player.position).magnitude;
-            Debug.Log(distance);
-            Debug.Log(obj.position);
-            Debug.Log(player.position);
+            // Debug.Log(distance);
+            // Debug.Log(obj.position);
+            // Debug.Log(player.position);
             if (distance < glowDistance)
             {
                 // 計算亮度
@@ -58,13 +58,13 @@ public class CloseToObj : MonoBehaviour
                 fanSpriteRenderer.color = tmp;
 
                 //  = Color.white * glow;
-                Debug.Log("Player come");
+                // Debug.Log("Player come");
             }
             else
             {
                 // 如果角色離開，將 SpriteRenderer 的顏色重置
                 fanSpriteRenderer.color = originalColor;
-                Debug.Log("Player leave");
+                // Debug.Log("Player leave");
             }
         }
         else

@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
         // if(Input.GetKeyDown(KeyCode.Space)){
         //     PlayerMelt();
         // }
-
+        Debug.Log(status.isWin);
+        
         if(status.isWin){
             Color color = GetComponent<SpriteRenderer>().color;
             color.a = 0;
@@ -77,6 +78,16 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.tag=="Exit" && status.isMelted){
             PlayerWin();
+        }
+
+        if(other.gameObject.tag=="InteractiveObj" && !status.isMelted){
+            
+            InteractiveObj interactiveObj = other.gameObject.GetComponent<InteractiveObj>();
+            if (interactiveObj != null)
+            {
+                interactiveObj.Interact();
+            }
+            
         }
     }
     public void RunLeft(InputAction.CallbackContext ctx){

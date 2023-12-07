@@ -42,8 +42,6 @@ public class FanInteract : InteractiveObj
             StartCoroutine(PlayFanSound());
         }
         fanOn = !fanOn;
-        
-        
     }
     IEnumerator PlayFanSound(){
         myAudioSource.PlayOneShot(BeepSound);
