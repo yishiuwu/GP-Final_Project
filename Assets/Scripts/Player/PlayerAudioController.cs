@@ -41,7 +41,7 @@ public class PlayerAudioController : MonoBehaviour
     }
     
     IEnumerator WaitForReplayWin(){
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         wincanplay = true;
         SceneManager.LoadScene("WinSceneTemp");
     }
