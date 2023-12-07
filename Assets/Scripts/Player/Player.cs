@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         // if(Input.GetKeyDown(KeyCode.Space)){
         //     PlayerMelt();
         // }
-        Debug.Log(status.isWin);
+        
         
         if(status.isWin){
             Color color = GetComponent<SpriteRenderer>().color;
