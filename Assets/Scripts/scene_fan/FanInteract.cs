@@ -22,11 +22,11 @@ public class FanInteract : InteractiveObj
     void Update(){
         if(fanOn){
             FanLeaf.GetComponent<Animator>().SetBool("FanOn", true);
-            if (playerRb.position.y <= 0.89f)
+            if (playerRb.position.y <= -0.5f)
             {
                 // 給予玩家施力（固定方向，大小為fanForce）
-                Vector2 fanForceVector = new Vector2(-0.02f, 0f);
-                playerRb.AddForce(fanForceVector, ForceMode2D.Impulse);
+                Vector2 fanForceVector = new Vector2(-5f, 0f);
+                playerRb.AddForce(fanForceVector*Time.deltaTime, ForceMode2D.Impulse);
             }
         }else{
             FanLeaf.GetComponent<Animator>().SetBool("FanOn", false);
