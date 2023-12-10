@@ -8,6 +8,7 @@ TagManager:
   - Fan
   - GameManager
   - InteractiveObj
+  - StageNode
   layers:
   - Default
   - TransparentFX
