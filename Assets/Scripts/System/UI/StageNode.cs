@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,15 @@ using UnityEngine.Events;
 
 public class StageNode : MonoBehaviour
 {
-    public StageNode upNode, downNode, leftNode, rightNode;
+    [Serializable]
+    public struct Navigation
+    {
+        public StageNode upNode, downNode, leftNode, rightNode;
+    }
     public bool isLock = true;
+    [SerializeField]
+    public Navigation navigation;
+    [SpaceAttribute]
     public UnityEvent OnInvoke;
 
     // Start is called before the first frame update
@@ -19,5 +27,9 @@ public class StageNode : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Invoke() {
+        OnInvoke?.Invoke();
     }
 }
