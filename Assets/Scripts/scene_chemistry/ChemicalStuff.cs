@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ChemicalStuff : MonoBehaviour
 {
-    private Color color;
     private bool touchingCat;
     private GameObject cat;
+
+    public string ph = "neutral";
 
     public float num = 10.0f;
     public float decayTime = 1.0f;
@@ -21,7 +22,7 @@ public class ChemicalStuff : MonoBehaviour
         cat = null;
         scaleChange = new Vector3(transform.localScale.x / num, transform.localScale.y / num, transform.localScale.z / num);
         // color = gameObject.color;
-        Debug.Log(color);
+        // Debug.Log(color);
     }
 
     // Update is called once per frame
@@ -32,7 +33,7 @@ public class ChemicalStuff : MonoBehaviour
 
     // bug? 碰到後變state 若換game object不會有問題
     void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.tag == "Player"){
+        if(other.gameObject.tag == "Player" /* && StatusSystem.isMelted */){
             touchingCat = true;
             cat = other.gameObject;
             StartCoroutine(StartDyingCat(() => {
@@ -52,12 +53,15 @@ public class ChemicalStuff : MonoBehaviour
     IEnumerator StartDyingCat(System.Action callback = null){
         Debug.Log("start dying cat");
 
-        while(touchingCat && cat != null){
+        while(touchingCat && cat != null /* && StatusSystem.isMelted */){
             num -= 1;
             Debug.Log("cost one");
 
             transform.localScale -= scaleChange;
-            // cat.GetComponent<Renderer>().color = color;
+            if(ph == "acid")
+                StatusSystem.Instance.Ph2Ac();
+            else if(ph == "alkali")
+                StatusSystem.Instance.Ph2Al();
 
             if(num <= 0){
                 touchingCat = false;
