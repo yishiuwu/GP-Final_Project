@@ -11,6 +11,7 @@ public class SceneTransition : MonoBehaviour
     // public bool haveTransitionEffect;
     public float transistDuration = 1;
     ColorEffect colorEffect;
+    TransformEffect transformEffect;
     GameManager gameManager;
 
     bool isLoading;
@@ -20,6 +21,7 @@ public class SceneTransition : MonoBehaviour
     {
         // instance = this;
         colorEffect = GetComponentInChildren<ColorEffect>();
+        transformEffect = GetComponentInChildren<TransformEffect>();
         gameManager = GetComponent<GameManager>();
         isLoading = false;
         // Debug.Log(instance);
@@ -44,6 +46,9 @@ public class SceneTransition : MonoBehaviour
             // colorEffect.SetFadeDuration(transistDuration);
             colorEffect.StartFade(Color.clear, transistDuration);
         }
+        // if (transformEffect) {
+        //     transformEffect.DownIn();
+        // }
     }
 
     public void ChangeScene(String sceneName) {
