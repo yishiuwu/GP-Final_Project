@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 6914602856647983268}
   - component: {fileID: 6914602856647983269}
   m_Layer: 0
-  m_Name: "\u6DB2\u614B\u80D6\u8C93"
+  m_Name: MeltPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

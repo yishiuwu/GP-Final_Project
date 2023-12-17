@@ -168,7 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9be852291e45074bb25ff4968ab512d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7301826141327340454}
+  playerObject: {fileID: 7301826141327340507}
+  meltCatPrefab: {fileID: 6914602856647983270, guid: cdcd6a00822a7d040a1b3694c9ae3499, type: 3}
   HP: 0
   maxHP: 0
   isMelted: 0
