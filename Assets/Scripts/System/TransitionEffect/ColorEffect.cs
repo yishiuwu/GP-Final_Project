@@ -1,19 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class ColorEffect : MonoBehaviour
+public class ColorEffect : TransitionEffect
 {
     private Color fadeColor;
-    private float duration = 1.0f;
 
-    private Image image;
-    
-    void Awake()
+    void Start()
     {
-        image = GetComponent<Image>();
+        SetColor(Color.white);
         // Debug.Log(image.ToString());
     }
 

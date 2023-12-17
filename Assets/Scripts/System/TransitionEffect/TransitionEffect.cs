@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.IK;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Image))]
 public class TransitionEffect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    protected float duration = 1.0f;
+    protected Image image;
+
+    void Awake()
     {
-        
+        image = GetComponent<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
