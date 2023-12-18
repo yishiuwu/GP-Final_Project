@@ -23,6 +23,7 @@ public class BatteryCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log($"Charging: {Charging}");
         if(Charging && !EnergyFull && canAddSub){
             ModifiEnergy(1);
             myAudioSource.PlayOneShot(chargeSound);

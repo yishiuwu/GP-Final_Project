@@ -156,6 +156,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 0}
   moveSpeed: 3
+  startmelt: 0
+  startwin: 0
+  parent: {fileID: 0}
 --- !u!114 &7301826141327340449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,16 +171,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9be852291e45074bb25ff4968ab512d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 7301826141327340507}
-  meltCatPrefab: {fileID: 6914602856647983270, guid: cdcd6a00822a7d040a1b3694c9ae3499, type: 3}
   HP: 0
   maxHP: 0
   isMelted: 0
   isWin: 0
   isLose: 0
   isRunning: 0
-  meltImg: {fileID: 21300000, guid: d56802ecac4cb0f4caead2dcef4d3715, type: 3}
-  solidImg: {fileID: 21300000, guid: 4af38ac01079a7d44a6b51ccb8a3015f, type: 3}
+  CatPrefab: {fileID: 0}
+  meltCatPrefab: {fileID: 6914602856647983270, guid: cdcd6a00822a7d040a1b3694c9ae3499, type: 3}
+  startpt: {fileID: 0}
+  ph: neutral
 --- !u!114 &7301826141327340448
 MonoBehaviour:
   m_ObjectHideFlags: 0

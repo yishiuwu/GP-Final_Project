@@ -36,10 +36,10 @@ public class ChemicalStuff : MonoBehaviour
         if(other.gameObject.tag == "Player" /* && StatusSystem.isMelted */){
             touchingCat = true;
             cat = other.gameObject;
-            StartCoroutine(StartDyingCat(() => {
-                touchingCat = false;
-                cat = null;
-            }));
+            // StartCoroutine(StartDyingCat(() => {
+            //     touchingCat = false;
+            //     cat = null;
+            // }));
         }
     }
 
@@ -50,28 +50,28 @@ public class ChemicalStuff : MonoBehaviour
         }
     }
 
-    IEnumerator StartDyingCat(System.Action callback = null){
-        Debug.Log("start dying cat");
+    // IEnumerator StartDyingCat(System.Action callback = null){
+    //     Debug.Log("start dying cat");
 
-        while(touchingCat && cat != null /* && StatusSystem.isMelted */){
-            num -= 1;
-            Debug.Log("cost one");
+    //     // while(touchingCat && cat != null /* && StatusSystem.isMelted */){
+    //     //     num -= 1;
+    //     //     Debug.Log("cost one");
 
-            transform.localScale -= scaleChange;
-            if(ph == "acid")
-                StatusSystem.Instance.Ph2Ac();
-            else if(ph == "alkali")
-                StatusSystem.Instance.Ph2Al();
+    //     //     transform.localScale -= scaleChange;
+    //     //     if(ph == "acid")
+    //     //         StatusSystem.Instance.Ph2Ac();
+    //     //     else if(ph == "alkali")
+    //     //         StatusSystem.Instance.Ph2Al();
 
-            if(num <= 0){
-                touchingCat = false;
-                cat = null;
-                Debug.Log("no stuff left");
-                Destroy(gameObject);
-                callback?.Invoke();
-            }
-            yield return new WaitForSeconds(decayTime);
-        }
-    }
+    //     //     if(num <= 0){
+    //     //         touchingCat = false;
+    //     //         cat = null;
+    //     //         Debug.Log("no stuff left");
+    //     //         Destroy(gameObject);
+    //     //         callback?.Invoke();
+    //     //     }
+    //     //     yield return new WaitForSeconds(decayTime);
+    //     // }
+    // }
 
 }
