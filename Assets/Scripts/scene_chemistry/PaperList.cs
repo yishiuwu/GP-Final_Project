@@ -29,6 +29,8 @@ public class PaperList : MonoBehaviour
         if(!win){
             if(CheckAnswer()){
                 win = true;
+                Debug.Log("win");
+                GameManager.currentStage.Win();
             }
         }
     }

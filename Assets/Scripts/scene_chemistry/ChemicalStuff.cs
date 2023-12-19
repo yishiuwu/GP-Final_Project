@@ -15,6 +15,8 @@ public class ChemicalStuff : MonoBehaviour
 
     private Vector3 scaleChange;
 
+    private bool startDye = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,17 +25,27 @@ public class ChemicalStuff : MonoBehaviour
         scaleChange = new Vector3(transform.localScale.x / num, transform.localScale.y / num, transform.localScale.z / num);
         // color = gameObject.color;
         // Debug.Log(color);
+        startDye = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // if(touchingCat && cat != null && StatusSystem.Instance.isMelted){
+        //     Debug.Log("pui");
+        //     StartCoroutine(StartDyingCat(() => {
+        //         touchingCat = false;
+        //         cat = null;
+        //     }));
+        // }
     }
 
     // bug? 碰到後變state 若換game object不會有問題
     void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.tag == "Player" /* && StatusSystem.isMelted */){
+        // Debug.Log(other.gameObject.tag);
+        if(other.gameObject.tag == "Player" /*|| other.gameObject.tag == "MeltPlayer" && StatusSystem.isMelted */){
+            // Debug.Log("get player");
+            // Debug.Log(other.gameObject.tag);
             touchingCat = true;
             cat = other.gameObject;
             StartCoroutine(StartDyingCat(() => {
@@ -44,7 +56,10 @@ public class ChemicalStuff : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D other){
-        if(other.gameObject.tag == "Player"){
+        // Debug.Log(other.gameObject.tag);
+        if(other.gameObject.tag == "Player" || other.gameObject.tag == "MeltPlayer"){
+            Debug.Log("player go");
+            Debug.Log(other.gameObject.tag);
             touchingCat = false;
             cat = null;
         }
@@ -53,7 +68,7 @@ public class ChemicalStuff : MonoBehaviour
     IEnumerator StartDyingCat(System.Action callback = null){
         Debug.Log("start dying cat");
 
-        while(touchingCat && cat != null /* && StatusSystem.isMelted */){
+        while(touchingCat && cat != null  /*&& StatusSystem.Instance.isMelted*/ ){
             num -= 1;
             // Debug.Log("cost one");
 
