@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class StatusSystem : MonoBehaviour
 {
@@ -24,9 +25,9 @@ public class StatusSystem : MonoBehaviour
     SpriteRenderer meltPlayerRenderer ;
     SpriteRenderer PlayerRenderer ;
     public string ph = "neutral";   // neutral/acid/alkali
-    // public event Action OnPh2N;
-    // public event Action OnPh2Ac;
-    // public event Action OnPh2Al;
+    public event Action OnPh2N;
+    public event Action OnPh2Ac;
+    public event Action OnPh2Al;
 
     public static StatusSystem Instance;
     
@@ -38,9 +39,9 @@ public class StatusSystem : MonoBehaviour
         meltPlayer.SetActive(false);
         PlayerRenderer = player.GetComponent<SpriteRenderer>();
         meltPlayerRenderer=meltPlayer.GetComponent<SpriteRenderer>();
-        // OnPh2N += ()=>{ph = "neutral";};
-        // OnPh2Ac += ()=>{ph = "acid";};
-        // OnPh2Al += ()=>{ph = "alkali";};
+        OnPh2N += ()=>{ph = "neutral";};
+        OnPh2Ac += ()=>{ph = "acid";};
+        OnPh2Al += ()=>{ph = "alkali";};
 
         Instance = this;
     }
@@ -49,12 +50,12 @@ public class StatusSystem : MonoBehaviour
         if (isMelted)
         {
             Vector3 meltPlayerPosition = meltPlayer.transform.position;
-            Debug.Log($"meltPlayerPosition: {meltPlayerPosition}");
+            // Debug.Log($"meltPlayerPosition: {meltPlayerPosition}");
         }
         else
         {
             Vector3 playerPosition = playerforpos.transform.position;
-            Debug.Log($"playerPosition: {playerPosition}");
+            // Debug.Log($"playerPosition: {playerPosition}");
         }
     }
 
@@ -111,15 +112,15 @@ public class StatusSystem : MonoBehaviour
         }
         
     }
-    // public void Ph2N(){
-    //     OnPh2N?.Invoke();
-    // }
-    // public void Ph2Ac(){
-    //     OnPh2Ac?.Invoke();
-    // }
-    // public void Ph2Al(){
-    //     OnPh2Al?.Invoke();
-    // }
+    public void Ph2N(){
+        OnPh2N?.Invoke();
+    }
+    public void Ph2Ac(){
+        OnPh2Ac?.Invoke();
+    }
+    public void Ph2Al(){
+        OnPh2Al?.Invoke();
+    }
     
 }
 public class StatusEventArgs : System.EventArgs{

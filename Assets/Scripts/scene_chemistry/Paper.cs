@@ -11,7 +11,7 @@ public class Paper : MonoBehaviour
     private Color alkaliColor;
     private Color neutralColor;
 
-    private string ph = "neutral";
+    public string ph = "neutral";
 
     private bool changingColor = false;
 
@@ -37,19 +37,25 @@ public class Paper : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.tag == "Player" /* && StatusSystem.isMelted */ && !changingColor){
-            Debug.Log("get Player");
-            Debug.Log(ph);
-            Debug.Log(StatusSystem.Instance.ph);
+            // Debug.Log("get Player");
+            // Debug.Log(ph);
+            // Debug.Log(StatusSystem.Instance.ph);
             if(StatusSystem.Instance.ph == "acid"){
                 Debug.Log("go acid");
                 if(ph == "neutral"){
                     changingColor = true;
-                    StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{changingColor=false;}));
+                    StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{
+                        changingColor = false;
+                        ph = "acid";
+                    }));
                 }
                 else if(ph == "alkali"){
                     changingColor = true;
                     StartCoroutine(Fade(neutralColor, fadeSpeed, ()=>{
-                        StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{changingColor=false;}));
+                        StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{
+                            changingColor=false;
+                            ph = "acid";
+                        }));
                     }));
                 }
             }
@@ -57,12 +63,18 @@ public class Paper : MonoBehaviour
                 Debug.Log("go alkali");
                 if(ph == "neutral"){
                     changingColor = true;
-                    StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{changingColor=false;}));
+                    StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{
+                        changingColor = false;
+                        ph = "alkali";
+                    }));
                 }
                 else if(ph == "acid"){
                     changingColor = true;
                     StartCoroutine(Fade(neutralColor, fadeSpeed, ()=>{
-                        StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{changingColor=false;}));
+                        StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{
+                            changingColor=false;
+                            ph = "alkali";
+                        }));
                     }));
                 }
             }
