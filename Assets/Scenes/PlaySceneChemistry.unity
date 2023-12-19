@@ -2913,9 +2913,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1154737079460386541, guid: 79cf967beb52768499165d919f0870f8, type: 3}
+      propertyPath: new_x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154737079460386541, guid: 79cf967beb52768499165d919f0870f8, type: 3}
+      propertyPath: new_y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154737079460386541, guid: 79cf967beb52768499165d919f0870f8, type: 3}
+      propertyPath: new_z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1154737079460386542, guid: 79cf967beb52768499165d919f0870f8, type: 3}
       propertyPath: m_Name
       value: Player_parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761205533446258138, guid: 79cf967beb52768499165d919f0870f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8454170682012527640, guid: 79cf967beb52768499165d919f0870f8, type: 3}
       propertyPath: meltPlayer

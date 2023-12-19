@@ -1485,6 +1485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dump: 5
   win: 0
+  gameWin: 0
 --- !u!1 &1059317408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2832,6 +2833,10 @@ PrefabInstance:
     - target: {fileID: 8454170682012527646, guid: 79cf967beb52768499165d919f0870f8, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.237
+      objectReference: {fileID: 0}
+    - target: {fileID: 8454170682012527714, guid: 79cf967beb52768499165d919f0870f8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1154737078514713457, guid: 79cf967beb52768499165d919f0870f8, type: 3}
