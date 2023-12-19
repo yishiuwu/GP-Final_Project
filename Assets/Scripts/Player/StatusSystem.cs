@@ -15,6 +15,7 @@ public class StatusSystem : MonoBehaviour
     public bool isWin = false;
     public bool isLose = false;
     public bool isRunning = false;
+    public float new_x, new_y, new_z; //set for scale
     //public Sprite meltImg;
     //public Sprite solidImg;
     public GameObject meltCatPrefab;
@@ -28,7 +29,7 @@ public class StatusSystem : MonoBehaviour
     // public event Action OnPh2Al;
 
     public static StatusSystem Instance;
-
+    
     void Start()
     {
         isWin = false;
@@ -36,29 +37,22 @@ public class StatusSystem : MonoBehaviour
         player.StatusChanging += OnStatusChanging;
         meltPlayer.SetActive(false);
         PlayerRenderer = player.GetComponent<SpriteRenderer>();
+        meltPlayerRenderer=meltPlayer.GetComponent<SpriteRenderer>();
         // OnPh2N += ()=>{ph = "neutral";};
         // OnPh2Ac += ()=>{ph = "acid";};
         // OnPh2Al += ()=>{ph = "alkali";};
 
         Instance = this;
     }
-    // Vector3 mplayerPosition;
-    // Vector3 playerPosition;
     void Update()
     {
-        // playerPosition = player.transform.position;
-        // mplayerPosition = meltPlayer.transform.position;
         if (isMelted)
         {
-            // meltPlayer.SetActive(true);
-            // PlayerRenderer.sortingOrder = -1;
             Vector3 meltPlayerPosition = meltPlayer.transform.position;
             Debug.Log($"meltPlayerPosition: {meltPlayerPosition}");
         }
         else
         {
-            // meltPlayer.SetActive(false);
-            //PlayerRenderer.sortingOrder = 3;
             Vector3 playerPosition = playerforpos.transform.position;
             Debug.Log($"playerPosition: {playerPosition}");
         }
@@ -66,39 +60,26 @@ public class StatusSystem : MonoBehaviour
 
     private void MeltPlayer()
     {
-        Vector3 playerPosition = playerforpos.transform.position; // Get the player's current position
-        Vector3 playerCenter = GetObjectCenter(playerforpos.gameObject); // Get the center of the player
-        meltPlayer.SetActive(true);
+        GameObject splayer = GameObject.FindGameObjectWithTag("Player");
+        Vector3 playerPosition = splayer.transform.position; // Get the player's current position
+        splayer.GetComponent<CapsuleCollider2D>().enabled = false;
+        meltPlayer = Instantiate(meltCatPrefab,playerPosition, transform.rotation);
+        Vector3 newScale = new Vector3(new_x, new_y, new_z);
+        meltPlayer.transform.localScale = newScale;
         Debug.Log($"playerPosition: {playerPosition}");
         meltPlayer.transform.position = playerPosition; // Set meltPlayer's position to the player's position
-        //SetObjectCenter(meltPlayer.gameObject, playerCenter); // Set the center of meltPlayer to player's center
-        // meltPlayer.SetActive(true);
         PlayerRenderer.sortingOrder = -1;
     }
 
     private void SolidifyPlayer()
     {
-        Vector3 meltPlayerPosition = meltPlayer.transform.position; // Get the meltPlayer's current position
-        Vector3 meltPlayerCenter = GetObjectCenter(meltPlayer.gameObject); // Get the center of meltPlayer
+        GameObject mplayer = GameObject.FindGameObjectWithTag("MeltPlayer");
+        Vector3 meltPlayerPosition = mplayer.transform.position; // Get the meltPlayer's current position
         Debug.Log($"meltPlayerPosition: {meltPlayerPosition}");
-        meltPlayer.SetActive(false);
-        PlayerRenderer.sortingOrder = 3;
-
+        Destroy(meltPlayer);
+        PlayerRenderer.sortingOrder = 4;
+        player.GetComponent<CapsuleCollider2D>().enabled = true;
         player.transform.position = meltPlayerPosition; // Set player's position to the meltPlayer's position
-        SetObjectCenter(player.gameObject, meltPlayerCenter); // Set the center of player to meltPlayer's center
-    }
-    private Vector3 GetObjectCenter(GameObject obj)
-    {
-        Bounds bounds = obj.GetComponent<Renderer>().bounds;
-        return bounds.center;
-    }
-
-    // Helper method to set the center of a GameObject
-    private void SetObjectCenter(GameObject obj, Vector3 center)
-    {
-        Bounds bounds = obj.GetComponent<Renderer>().bounds;
-        Vector3 offset = center - bounds.center;
-        obj.transform.position += offset;
     }
     private void OnStatusChanging(object sender, StatusEventArgs e)
     
@@ -110,18 +91,10 @@ public class StatusSystem : MonoBehaviour
                 Debug.Log($"Player isMelted: {isMelted}");
                 if (isMelted)
                 {
-                    // playerPosition = player.transform.position;
-                    // meltPlayer.SetActive(true);
-                    // PlayerRenderer.sortingOrder = -1;
-                    // meltPlayer.transform.position = playerPosition;
                     MeltPlayer();
                 }
                 else
                 {
-                    // mplayerPosition = meltPlayer.transform.position;
-                    // meltPlayer.SetActive(false);
-                    // PlayerRenderer.sortingOrder = 3;
-                    // player.transform.position = mplayerPosition;
                     SolidifyPlayer();
                 }
             }else if(e.actType==StatusEventArgs.ActType.Win){
