@@ -21,13 +21,14 @@ GameObject:
   - component: {fileID: 7301826141327340463}
   - component: {fileID: 7301826141327340460}
   - component: {fileID: 7301826141327340462}
+  - component: {fileID: 731671601778820713}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7301826141327340455
 Transform:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7301826141327340507}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -168,15 +169,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9be852291e45074bb25ff4968ab512d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7301826141327340454}
+  player: {fileID: 0}
+  meltPlayer: {fileID: 0}
+  playerforpos: {fileID: 0}
   HP: 0
   maxHP: 0
   isMelted: 0
   isWin: 0
   isLose: 0
   isRunning: 0
-  meltImg: {fileID: 21300000, guid: d56802ecac4cb0f4caead2dcef4d3715, type: 3}
-  solidImg: {fileID: 21300000, guid: 4af38ac01079a7d44a6b51ccb8a3015f, type: 3}
+  new_x: 0
+  new_y: 0
+  new_z: 0
+  meltCatPrefab: {fileID: 6914602856647983270, guid: cdcd6a00822a7d040a1b3694c9ae3499, type: 3}
+  ph: neutral
 --- !u!114 &7301826141327340448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,3 +468,19 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerNormal
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!70 &731671601778820713
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7301826141327340507}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1}
+  m_Size: {x: 3, y: 8}
+  m_Direction: 0

@@ -6,6 +6,7 @@ public class PipeLineCtrl : MonoBehaviour
 {
     public bool Linked = false;
     public GameObject player;
+    public GameObject mplayer;
     private StatusSystem playerstate;
     public Sprite normalSprite; // 普通状态的图片
     public Sprite litSprite;    // 亮起状态的图片
@@ -20,10 +21,16 @@ public class PipeLineCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CheckPos() && playerstate.isMelted==true){
-            Linked = true;
-            spriteRenderer.sprite = litSprite;
-            spriteRenderer.sortingOrder = 2;
+        
+        if(playerstate.isMelted==true){
+            mplayer = GameObject.FindGameObjectWithTag("MeltPlayer");
+            if(CheckPos(mplayer)){
+                Debug.Log($"CheckPos: {CheckPos(mplayer)}, IsMelt: {playerstate.isMelted}");
+                Linked = true;
+                spriteRenderer.sprite = litSprite;
+                spriteRenderer.sortingOrder = 2;
+            }
+            
         }else{
             Linked = false;
             spriteRenderer.sprite = normalSprite;
@@ -31,9 +38,10 @@ public class PipeLineCtrl : MonoBehaviour
         }
         
     }
-    bool CheckPos(){
-        if(player.transform.position.x<0f && player.transform.position.x>-0.6f){
-            if(player.transform.position.y < -3f && player.transform.position.y > -3.2f){
+    bool CheckPos(GameObject tar){
+        Debug.Log($"mPos: {tar.transform.position}");
+        if(tar.transform.position.x<0f && tar.transform.position.x>-0.6f){
+            if(tar.transform.position.y < 0f && tar.transform.position.y > -3.2f){
                 return true;
             }
         }

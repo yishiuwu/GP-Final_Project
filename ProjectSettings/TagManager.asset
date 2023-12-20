@@ -9,6 +9,7 @@ TagManager:
   - GameManager
   - InteractiveObj
   - StageNode
+  - MeltPlayer
   layers:
   - Default
   - TransparentFX

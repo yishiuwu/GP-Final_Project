@@ -11,45 +11,107 @@ public class Paper : MonoBehaviour
     private Color alkaliColor;
     private Color neutralColor;
 
-    private string ph = "neutral";
+    public string ph = "neutral";
 
     private bool changingColor = false;
+    private bool getCat = false;
 
     // Start is called before the first frame update
     void Start()
     {
         sp = GetComponent<SpriteRenderer>();
-        acidColor = new Color(0.7169812f, 0.2885962f, 0.2885962f);
-        alkaliColor = new Color(0.2901961f, 0.4346832f, 0.7176471f);
+        acidColor = new Color(0.9411765f, 0.7294118f, 0.6627451f);
+        alkaliColor = new Color(0.6627451f, 0.7529412f, 0.9764706f);
         neutralColor = Color.white;
 
-        sp.color = neutralColor;
-        ph = "neutral";
+        switch(ph){
+            case "neutral":
+                sp.color = neutralColor;
+                break;
+            case "acid":
+                sp.color = acidColor;
+                break;
+            case "alkali":
+                sp.color = alkaliColor;
+                break;
+        }
 
         changingColor = false;
+        getCat = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // if(getCat && StatusSystem.Instance.isMelted){
+        //     Gotph();
+        // }
     }
 
+    // void Gotph(){
+    //     if(StatusSystem.Instance.ph == "acid"){
+    //         Debug.Log("go acid");
+    //         if(ph == "neutral"){
+    //             changingColor = true;
+    //             StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{
+    //                 changingColor = false;
+    //                 ph = "acid";
+    //             }));
+    //         }
+    //         else if(ph == "alkali"){
+    //             changingColor = true;
+    //             StartCoroutine(Fade(neutralColor, fadeSpeed, ()=>{
+    //                 StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{
+    //                     changingColor=false;
+    //                     ph = "acid";
+    //                 }));
+    //             }));
+    //         }
+    //     }
+    //     else if(StatusSystem.Instance.ph == "alkali"){
+    //         Debug.Log("go alkali");
+    //         if(ph == "neutral"){
+    //             changingColor = true;
+    //             StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{
+    //                 changingColor = false;
+    //                 ph = "alkali";
+    //             }));
+    //         }
+    //         else if(ph == "acid"){
+    //             changingColor = true;
+    //             StartCoroutine(Fade(neutralColor, fadeSpeed, ()=>{
+    //                 StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{
+    //                     changingColor=false;
+    //                     ph = "alkali";
+    //                 }));
+    //             }));
+    //         }
+    //     }
+    // }
+
     void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.tag == "Player" /* && StatusSystem.isMelted */ && !changingColor){
-            Debug.Log("get Player");
-            Debug.Log(ph);
-            Debug.Log(StatusSystem.Instance.ph);
+        if(other.gameObject.tag == "Player" /*&& StatusSystem.Instance.isMelted*/ && !changingColor){
+            // Debug.Log("get Player");
+            // Debug.Log(ph);
+            // Debug.Log(StatusSystem.Instance.ph);
+            getCat = true;
+
             if(StatusSystem.Instance.ph == "acid"){
                 Debug.Log("go acid");
                 if(ph == "neutral"){
                     changingColor = true;
-                    StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{changingColor=false;}));
+                    StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{
+                        changingColor = false;
+                        ph = "acid";
+                    }));
                 }
                 else if(ph == "alkali"){
                     changingColor = true;
                     StartCoroutine(Fade(neutralColor, fadeSpeed, ()=>{
-                        StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{changingColor=false;}));
+                        StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{
+                            changingColor=false;
+                            ph = "acid";
+                        }));
                     }));
                 }
             }
@@ -57,15 +119,27 @@ public class Paper : MonoBehaviour
                 Debug.Log("go alkali");
                 if(ph == "neutral"){
                     changingColor = true;
-                    StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{changingColor=false;}));
+                    StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{
+                        changingColor = false;
+                        ph = "alkali";
+                    }));
                 }
                 else if(ph == "acid"){
                     changingColor = true;
                     StartCoroutine(Fade(neutralColor, fadeSpeed, ()=>{
-                        StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{changingColor=false;}));
+                        StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{
+                            changingColor=false;
+                            ph = "alkali";
+                        }));
                     }));
                 }
             }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other){
+        if(other.gameObject.tag == "Player"){
+            getCat = false;
         }
     }
 

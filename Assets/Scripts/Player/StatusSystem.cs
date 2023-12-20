@@ -4,46 +4,83 @@ using UnityEngine;
 using System;
 
 public class StatusSystem : MonoBehaviour
-{   
-    [SerializeField] Player player;
+{
+    [SerializeField] private Player player;
+    [SerializeField] private GameObject meltPlayer;
+    [SerializeField] private GameObject playerforpos;
+    // [SerializeField] private GameObject playerObject;
+    // [SerializeField] private GameObject meltPlayerObject;
     [SerializeField] private int HP;
     [SerializeField] private int maxHP;
     public bool isMelted = false;
     public bool isWin = false;
     public bool isLose = false;
     public bool isRunning = false;
-    public Sprite meltImg;
-    public Sprite solidImg;
-
+    public float new_x, new_y, new_z; //set for scale
+    //public Sprite meltImg;
+    //public Sprite solidImg;
+    public GameObject meltCatPrefab;
+    private GameObject meltCatInstance;
+    private bool hasMelt = false;
+    SpriteRenderer meltPlayerRenderer ;
+    SpriteRenderer PlayerRenderer ;
     public string ph = "neutral";   // neutral/acid/alkali
     public event Action OnPh2N;
     public event Action OnPh2Ac;
     public event Action OnPh2Al;
 
     public static StatusSystem Instance;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         isWin = false;
-        player = GetComponent<Player>();
+        player = GetComponentInChildren<Player>();
         player.StatusChanging += OnStatusChanging;
-
+        meltPlayer.SetActive(false);
+        PlayerRenderer = player.GetComponent<SpriteRenderer>();
+        meltPlayerRenderer=meltPlayer.GetComponent<SpriteRenderer>();
         OnPh2N += ()=>{ph = "neutral";};
         OnPh2Ac += ()=>{ph = "acid";};
         OnPh2Al += ()=>{ph = "alkali";};
 
         Instance = this;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if(isMelted){
-            GetComponent<SpriteRenderer>().sprite = meltImg;
-        }else{
-            GetComponent<SpriteRenderer>().sprite = solidImg;
+        if (isMelted)
+        {
+            Vector3 meltPlayerPosition = meltPlayer.transform.position;
+            // Debug.Log($"meltPlayerPosition: {meltPlayerPosition}");
         }
+        else
+        {
+            Vector3 playerPosition = playerforpos.transform.position;
+            // Debug.Log($"playerPosition: {playerPosition}");
+        }
+    }
+
+    private void MeltPlayer()
+    {
+        GameObject splayer = GameObject.FindGameObjectWithTag("Player");
+        Vector3 playerPosition = splayer.transform.position; // Get the player's current position
+        splayer.GetComponent<CapsuleCollider2D>().enabled = false;
+        meltPlayer = Instantiate(meltCatPrefab,playerPosition, transform.rotation);
+        Vector3 newScale = new Vector3(new_x, new_y, new_z);
+        meltPlayer.transform.localScale = newScale;
+        Debug.Log($"playerPosition: {playerPosition}");
+        meltPlayer.transform.position = playerPosition; // Set meltPlayer's position to the player's position
+        PlayerRenderer.sortingOrder = -1;
+    }
+
+    private void SolidifyPlayer()
+    {
+        GameObject mplayer = GameObject.FindGameObjectWithTag("MeltPlayer");
+        Vector3 meltPlayerPosition = mplayer.transform.position; // Get the meltPlayer's current position
+        Debug.Log($"meltPlayerPosition: {meltPlayerPosition}");
+        Destroy(meltPlayer);
+        PlayerRenderer.sortingOrder = 4;
+        player.GetComponent<CapsuleCollider2D>().enabled = true;
+        player.transform.position = meltPlayerPosition; // Set player's position to the meltPlayer's position
     }
     private void OnStatusChanging(object sender, StatusEventArgs e)
     
@@ -52,6 +89,15 @@ public class StatusSystem : MonoBehaviour
         if(e.target == "player"){
             if(e.actType==StatusEventArgs.ActType.Melt){
                 isMelted = !isMelted;
+                Debug.Log($"Player isMelted: {isMelted}");
+                if (isMelted)
+                {
+                    MeltPlayer();
+                }
+                else
+                {
+                    SolidifyPlayer();
+                }
             }else if(e.actType==StatusEventArgs.ActType.Win){
                 isWin = true;
                 isLose = false;
@@ -66,7 +112,6 @@ public class StatusSystem : MonoBehaviour
         }
         
     }
-
     public void Ph2N(){
         OnPh2N?.Invoke();
     }
@@ -76,7 +121,7 @@ public class StatusSystem : MonoBehaviour
     public void Ph2Al(){
         OnPh2Al?.Invoke();
     }
-
+    
 }
 public class StatusEventArgs : System.EventArgs{
     public enum ActType{

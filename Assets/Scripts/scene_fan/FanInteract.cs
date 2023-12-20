@@ -27,6 +27,18 @@ public class FanInteract : InteractiveObj
                 // 給予玩家施力（固定方向，大小為fanForce）
                 Vector2 fanForceVector = new Vector2(-5f, 0f);
                 playerRb.AddForce(fanForceVector*Time.deltaTime, ForceMode2D.Impulse);
+                GameObject meltPlayer = GameObject.FindGameObjectWithTag("MeltPlayer");
+                //mplayer.transform.position += new Vector3(-0.1f, 0f, 0f);
+                if (meltPlayer != null)
+                {
+                    // Gradually move the "meltplayer" towards the negative x-axis
+                    float meltPlayerSpeed = -2f; // Adjust the speed as needed
+                    meltPlayer.transform.Translate(Vector3.right * meltPlayerSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    Debug.LogWarning("MeltPlayer not found!");
+                }
             }
         }else{
             FanLeaf.GetComponent<Animator>().SetBool("FanOn", false);
