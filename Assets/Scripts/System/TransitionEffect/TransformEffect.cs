@@ -76,5 +76,6 @@ public class TransformEffect : TransitionEffect
             // Debug.Log(t);
         }
         callback?.Invoke();
+        yield break;
     }
 }

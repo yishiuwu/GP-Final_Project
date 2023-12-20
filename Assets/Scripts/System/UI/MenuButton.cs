@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MenuButton : MonoBehaviour, IPointerEnterHandler
+public class MenuButton : Button
 {
     public bool defaultSelected = false;
 
-    private Button btn;
+    // private Button btn;
     // Start is called before the first frame update
-    void Start()
-    {
-        btn = GetComponent<Button>();
-    }
+    // void Start()
+    // {
+    //     // btn = GetComponent<Button>();
+    // }
 
     // Update is called once per frame
     void Update()
@@ -21,8 +21,8 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler
         
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    override public void OnPointerEnter(PointerEventData eventData)
     {
-        btn.Select();
+        Select();
     }
 }

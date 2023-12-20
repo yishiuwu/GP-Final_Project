@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(GameManager))]
@@ -13,6 +14,9 @@ public class SceneTransition : MonoBehaviour
     ColorEffect colorEffect;
     TransformEffect transformEffect;
     GameManager gameManager;
+
+    [SerializeField] UnityEvent InSceneEffect;
+    [SerializeField] UnityEvent OutSceneEffect;
 
     bool isLoading;
     
