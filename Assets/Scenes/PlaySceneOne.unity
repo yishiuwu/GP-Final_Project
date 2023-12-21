@@ -1470,6 +1470,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &943339240 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4316679567285678763, guid: 79cf967beb52768499165d919f0870f8, type: 3}
+  m_PrefabInstance: {fileID: 525928139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963657240
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,6 +2197,7 @@ MonoBehaviour:
   fanOn: 0
   FanLeaf: {fileID: 1203100700}
   player: {fileID: 454718426}
+  bones: {fileID: 943339240}
 --- !u!114 &1218440215
 MonoBehaviour:
   m_ObjectHideFlags: 0

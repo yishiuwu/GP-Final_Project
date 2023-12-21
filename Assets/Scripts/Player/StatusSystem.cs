@@ -47,9 +47,14 @@ public class StatusSystem : MonoBehaviour
     }
     void Update()
     {
+
         if (isMelted)
         {
-            Vector3 meltPlayerPosition = meltPlayer.transform.position;
+            //Vector3 meltPlayerPosition = meltPlayer.transform.position;
+            GameObject mplayer = GameObject.FindGameObjectWithTag("bone");
+            Vector3 meltPlayerPosition = mplayer.transform.position; // Get the meltPlayer's current position
+            Debug.Log($"update meltPlayerPosition: {meltPlayerPosition}");
+
             // Debug.Log($"meltPlayerPosition: {meltPlayerPosition}");
         }
         else
@@ -74,7 +79,7 @@ public class StatusSystem : MonoBehaviour
 
     private void SolidifyPlayer()
     {
-        GameObject mplayer = GameObject.FindGameObjectWithTag("MeltPlayer");
+        GameObject mplayer = GameObject.FindGameObjectWithTag("bone");
         Vector3 meltPlayerPosition = mplayer.transform.position; // Get the meltPlayer's current position
         Debug.Log($"meltPlayerPosition: {meltPlayerPosition}");
         Destroy(meltPlayer);
