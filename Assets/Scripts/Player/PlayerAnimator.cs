@@ -7,7 +7,9 @@ public class PlayerAnimator : ScriptAnimator
     // private Runner runner;
     // private Jumper jumper;
     private Player player;
-    private StatusSystem playerState;
+    [SerializeField] private StatusSystem playerState;
+    Animator animator;
+
     // private FacingDirection facingDirection;
     // private Vector3 initialLocalScale;
     protected override void Init()
@@ -22,8 +24,8 @@ public class PlayerAnimator : ScriptAnimator
         );
         #endif
         TryGetComponent<Player>(out player);
-        TryGetComponent<StatusSystem>(out playerState);
-        
+        // TryGetComponent<StatusSystem>(out playerState);
+        animator = GetComponent<Animator>();
     }
     // void Start()
     // {
@@ -33,6 +35,7 @@ public class PlayerAnimator : ScriptAnimator
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isRunning" , playerState.isRunning);
         if(playerState.isWin){
             // PlayStateIfNotInState(AnimState.Victory);
         }
@@ -42,13 +45,15 @@ public class PlayerAnimator : ScriptAnimator
         // else if(jumper.isFalling){
         //     PlayStateIfNotInState(AnimState.Fall);
         // }
-        else if(playerState.isRunning){
-            PlayStateIfNotInState(AnimState.Run);
-        }else if(playerState.isMelted){
+        // else if(playerState.isRunning){
+        //     PlayStateIfNotInState(AnimState.Run);
+        // }
+        else if(playerState.isMelted){
             PlayStateIfNotInState(AnimState.Melt);
-        }else{
-            PlayStateIfNotInState(AnimState.Idle);
         }
+        // else{
+        //     PlayStateIfNotInState(AnimState.Idle);
+        // }
         // if(facingDirection.isFacingAwayFromInitialDirection) transform.localScale 
         // = new Vector3(-initialLocalScale.x, initialLocalScale.y, initialLocalScale.z);
         // else transform.localScale = initialLocalScale;

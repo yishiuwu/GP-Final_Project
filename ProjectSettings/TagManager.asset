@@ -10,6 +10,8 @@ TagManager:
   - InteractiveObj
   - StageNode
   - MeltPlayer
+  - bone
+  - bone_near
   layers:
   - Default
   - TransparentFX

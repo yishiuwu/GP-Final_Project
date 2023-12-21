@@ -12,6 +12,7 @@ public class FanInteract : InteractiveObj
     private AudioSource myAudioSource;
     public GameObject player;
     private Rigidbody2D playerRb;
+    public Transform bones;
     // private StatusSystem playerstate;
     // private GameObject player;
     void Start(){
@@ -22,28 +23,60 @@ public class FanInteract : InteractiveObj
     void Update(){
         if(fanOn){
             FanLeaf.GetComponent<Animator>().SetBool("FanOn", true);
+            //Debug.Log($"fan melt pos: {bones.localPosition}");
             if (playerRb.position.y <= -0.5f)
             {
                 // 給予玩家施力（固定方向，大小為fanForce）
                 Vector2 fanForceVector = new Vector2(-5f, 0f);
                 playerRb.AddForce(fanForceVector*Time.deltaTime, ForceMode2D.Impulse);
-                GameObject meltPlayer = GameObject.FindGameObjectWithTag("MeltPlayer");
-                //mplayer.transform.position += new Vector3(-0.1f, 0f, 0f);
-                if (meltPlayer != null)
-                {
-                    // Gradually move the "meltplayer" towards the negative x-axis
-                    float meltPlayerSpeed = -2f; // Adjust the speed as needed
-                    meltPlayer.transform.Translate(Vector3.right * meltPlayerSpeed * Time.deltaTime);
+                GameObject meltPlayer = GameObject.FindGameObjectWithTag("bone");
+                if(meltPlayer.transform.position.x >= -1.0f){
+                    Rigidbody2D meltPlayerRb = meltPlayer.GetComponent<Rigidbody2D>();
+                    meltPlayerRb.AddForce(fanForceVector*Time.deltaTime, ForceMode2D.Impulse);
+                    Debug.Log($"fan bone pos: {meltPlayer.transform.position}");
+                    meltPlayer.transform.position += new Vector3(-0.001f, 0f, 0f);
+
+                    GameObject[] boneObjects = GameObject.FindGameObjectsWithTag("bone_near");
+                    foreach (GameObject boneObject in boneObjects)
+                    {
+                        Rigidbody2D boneRb = boneObject.GetComponent<Rigidbody2D>();
+                        boneRb.AddForce(fanForceVector*Time.deltaTime, ForceMode2D.Impulse);
+                        //boneObject.transform.position += new Vector3(-0.001f, 0f, 0f);
+                    }
                 }
-                else
-                {
-                    Debug.LogWarning("MeltPlayer not found!");
-                }
+                
+                // if (meltPlayer != null)
+                // {
+                //     // Gradually move the "meltplayer" towards the negative x-axis
+                //     float meltPlayerSpeed = -2f; // Adjust the speed as needed
+                //     meltPlayer.transform.Translate(Vector3.right * meltPlayerSpeed * Time.deltaTime);
+                // }
+                // else
+                // {
+                //     Debug.LogWarning("MeltPlayer not found!");
+                // }
             }
         }else{
             FanLeaf.GetComponent<Animator>().SetBool("FanOn", false);
         }
     }
+    // private void MoveMelt()
+    // {
+    //     for (int i = 0; i < bones.Length-1; i++)
+    //     {
+    //         Vector2 v = bones[i].localPosition;
+    //         Vector2 t =  (Vector2.zero - v).normalized;
+    //         float cr = bones[i].gameObject.GetComponent<CircleCollider2D>().radius;
+    //         try
+    //         {
+    //             spriteShape.spline.SetPosition(i, (v - t * cr));
+    //         }
+    //         catch
+    //         {
+    //             spriteShape.spline.SetPosition(i, (v - t * (cr+0.5f)));
+    //         }
+    //     }
+    // }
     public override void Interact()
     {
         // 在這裡實作該物體的具體互動行為
