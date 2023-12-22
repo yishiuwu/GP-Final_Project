@@ -14,6 +14,7 @@ public class ChemicalStuff : MonoBehaviour
     public float norm = 5.0f;
 
     private Vector3 scaleChange;
+    private Vector3 smallOffset;
 
     private bool startDye = false;
 
@@ -23,6 +24,7 @@ public class ChemicalStuff : MonoBehaviour
         touchingCat = false;
         cat = null;
         scaleChange = new Vector3(transform.localScale.x / num, transform.localScale.y / num, transform.localScale.z / num);
+        smallOffset = new Vector3(0f, -0.04f, 0f);
         // color = gameObject.color;
         // Debug.Log(color);
         startDye = false;
@@ -43,7 +45,7 @@ public class ChemicalStuff : MonoBehaviour
     // bug? 碰到後變state 若換game object不會有問題
     void OnTriggerEnter2D(Collider2D other){
         // Debug.Log(other.gameObject.tag);
-        if(other.gameObject.tag == "Player" /*|| other.gameObject.tag == "MeltPlayer" && StatusSystem.isMelted */){
+        if(/*other.gameObject.tag == "Player" || */other.gameObject.tag == "bone" && StatusSystem.Instance.isMelted){
             // Debug.Log("get player");
             // Debug.Log(other.gameObject.tag);
             touchingCat = true;
@@ -53,11 +55,15 @@ public class ChemicalStuff : MonoBehaviour
                 cat = null;
             }));
         }
+        else if(other.gameObject.tag == "Player"){
+            touchingCat = false;
+            cat = null;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other){
         // Debug.Log(other.gameObject.tag);
-        if(other.gameObject.tag == "Player" || other.gameObject.tag == "MeltPlayer"){
+        if(/*other.gameObject.tag == "Player" || */other.gameObject.tag == "bone"){
             Debug.Log("player go");
             Debug.Log(other.gameObject.tag);
             touchingCat = false;
@@ -68,24 +74,29 @@ public class ChemicalStuff : MonoBehaviour
     IEnumerator StartDyingCat(System.Action callback = null){
         Debug.Log("start dying cat");
 
-        while(touchingCat && cat != null  /*&& StatusSystem.Instance.isMelted*/ ){
-            num -= 1;
-            // Debug.Log("cost one");
-
-            transform.localScale -= scaleChange;
-            if(ph == "acid")
-                StatusSystem.Instance.Ph2Ac();
-            else if(ph == "alkali")
-                StatusSystem.Instance.Ph2Al();
-
-            if(num <= 0){
-                touchingCat = false;
-                cat = null;
-                // Debug.Log("no stuff left");
-                Destroy(gameObject);
-                callback?.Invoke();
-            }
+        while(touchingCat && cat != null  && StatusSystem.Instance.isMelted){
             yield return new WaitForSeconds(decayTime);
+
+            if(touchingCat && cat != null  && StatusSystem.Instance.isMelted){
+                num -= 1;
+                // Debug.Log("cost one");
+
+                transform.localScale -= scaleChange;
+                transform.position += smallOffset;
+
+                if(ph == "acid")
+                    StatusSystem.Instance.Ph2Ac();
+                else if(ph == "alkali")
+                    StatusSystem.Instance.Ph2Al();
+
+                if(num <= 1){
+                    touchingCat = false;
+                    cat = null;
+                    // Debug.Log("no stuff left");
+                    Destroy(gameObject);
+                    callback?.Invoke();
+                }
+            }
         }
     }
 

@@ -43,54 +43,11 @@ public class Paper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(getCat && StatusSystem.Instance.isMelted){
-        //     Gotph();
-        // }
+        
     }
 
-    // void Gotph(){
-    //     if(StatusSystem.Instance.ph == "acid"){
-    //         Debug.Log("go acid");
-    //         if(ph == "neutral"){
-    //             changingColor = true;
-    //             StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{
-    //                 changingColor = false;
-    //                 ph = "acid";
-    //             }));
-    //         }
-    //         else if(ph == "alkali"){
-    //             changingColor = true;
-    //             StartCoroutine(Fade(neutralColor, fadeSpeed, ()=>{
-    //                 StartCoroutine(Fade(acidColor, fadeSpeed, ()=>{
-    //                     changingColor=false;
-    //                     ph = "acid";
-    //                 }));
-    //             }));
-    //         }
-    //     }
-    //     else if(StatusSystem.Instance.ph == "alkali"){
-    //         Debug.Log("go alkali");
-    //         if(ph == "neutral"){
-    //             changingColor = true;
-    //             StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{
-    //                 changingColor = false;
-    //                 ph = "alkali";
-    //             }));
-    //         }
-    //         else if(ph == "acid"){
-    //             changingColor = true;
-    //             StartCoroutine(Fade(neutralColor, fadeSpeed, ()=>{
-    //                 StartCoroutine(Fade(alkaliColor, fadeSpeed, ()=>{
-    //                     changingColor=false;
-    //                     ph = "alkali";
-    //                 }));
-    //             }));
-    //         }
-    //     }
-    // }
-
     void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.tag == "Player" /*&& StatusSystem.Instance.isMelted*/ && !changingColor){
+        if(/*other.gameObject.tag == "Player" &&*/ other.gameObject.tag == "bone" && StatusSystem.Instance.isMelted && !changingColor){
             // Debug.Log("get Player");
             // Debug.Log(ph);
             // Debug.Log(StatusSystem.Instance.ph);
@@ -138,7 +95,7 @@ public class Paper : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D other){
-        if(other.gameObject.tag == "Player"){
+        if(/*other.gameObject.tag == "Player"*/ other.gameObject.tag == "bone"){
             getCat = false;
         }
     }

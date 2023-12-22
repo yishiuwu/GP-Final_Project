@@ -6,11 +6,15 @@ public class Ground : MonoBehaviour
 {
     private bool win = false;
     public GameObject cam;
+    
+    AudioSource audioSourse;
+    public AudioClip brokenPing;
 
     // Start is called before the first frame update
     void Start()
     {
-        win = false;    
+        win = false;   
+        audioSourse = GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
@@ -22,6 +26,7 @@ public class Ground : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.name == "Ping"){
             Destroy(other.gameObject);
+            audioSourse.PlayOneShot(brokenPing);
             if(!win){
                 // WinCount(1.0f, ()=>{
                     cam.GetComponent<CamController>().WinCam();
