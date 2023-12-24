@@ -30,20 +30,23 @@ public class FanInteract : InteractiveObj
                 Vector2 fanForceVector = new Vector2(-5f, 0f);
                 playerRb.AddForce(fanForceVector*Time.deltaTime, ForceMode2D.Impulse);
                 GameObject meltPlayer = GameObject.FindGameObjectWithTag("bone");
-                if(meltPlayer.transform.position.x >= -1.0f){
-                    Rigidbody2D meltPlayerRb = meltPlayer.GetComponent<Rigidbody2D>();
-                    meltPlayerRb.AddForce(fanForceVector*Time.deltaTime, ForceMode2D.Impulse);
-                    Debug.Log($"fan bone pos: {meltPlayer.transform.position}");
-                    meltPlayer.transform.position += new Vector3(-0.001f, 0f, 0f);
+                if(meltPlayer != null){//by hamster
+                    if(meltPlayer.transform.position.x >= -1.0f){
+                        Rigidbody2D meltPlayerRb = meltPlayer.GetComponent<Rigidbody2D>();
+                        meltPlayerRb.AddForce(fanForceVector*Time.deltaTime, ForceMode2D.Impulse);
+                        Debug.Log($"fan bone pos: {meltPlayer.transform.position}");
+                        meltPlayer.transform.position += new Vector3(-0.001f, 0f, 0f);
 
-                    GameObject[] boneObjects = GameObject.FindGameObjectsWithTag("bone_near");
-                    foreach (GameObject boneObject in boneObjects)
-                    {
-                        Rigidbody2D boneRb = boneObject.GetComponent<Rigidbody2D>();
-                        boneRb.AddForce(fanForceVector*Time.deltaTime, ForceMode2D.Impulse);
-                        //boneObject.transform.position += new Vector3(-0.001f, 0f, 0f);
+                        GameObject[] boneObjects = GameObject.FindGameObjectsWithTag("bone_near");
+                        foreach (GameObject boneObject in boneObjects)
+                        {
+                            Rigidbody2D boneRb = boneObject.GetComponent<Rigidbody2D>();
+                            boneRb.AddForce(fanForceVector*Time.deltaTime, ForceMode2D.Impulse);
+                            //boneObject.transform.position += new Vector3(-0.001f, 0f, 0f);
+                        }
                     }
                 }
+                
                 
                 // if (meltPlayer != null)
                 // {

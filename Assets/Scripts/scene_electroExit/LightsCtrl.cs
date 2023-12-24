@@ -26,10 +26,10 @@ public class LightsCtrl : MonoBehaviour
 
         if(lightOn){
             spriteRenderer.sprite = litSprite;
-            spriteRenderer.sortingOrder = 4;
+            spriteRenderer.sortingOrder = 5;
         }else{
             spriteRenderer.sprite = normalSprite;
-            spriteRenderer.sortingOrder = 4;
+            spriteRenderer.sortingOrder = 5;
         }
     }
 }

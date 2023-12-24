@@ -28,13 +28,13 @@ public class PipeLineCtrl : MonoBehaviour
                 Debug.Log($"CheckPos: {CheckPos(mplayer)}, IsMelt: {playerstate.isMelted}");
                 Linked = true;
                 spriteRenderer.sprite = litSprite;
-                spriteRenderer.sortingOrder = 2;
+                spriteRenderer.sortingOrder = 3;
             }
             
         }else{
             Linked = false;
             spriteRenderer.sprite = normalSprite;
-            spriteRenderer.sortingOrder = 2;
+            spriteRenderer.sortingOrder = 3;
         }
         
     }

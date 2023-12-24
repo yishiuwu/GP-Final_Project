@@ -83,7 +83,7 @@ public class StatusSystem : MonoBehaviour
         Vector3 meltPlayerPosition = mplayer.transform.position; // Get the meltPlayer's current position
         Debug.Log($"meltPlayerPosition: {meltPlayerPosition}");
         Destroy(meltPlayer);
-        PlayerRenderer.sortingOrder = 4;
+        PlayerRenderer.sortingOrder = 7;
         player.GetComponent<CapsuleCollider2D>().enabled = true;
         player.transform.position = meltPlayerPosition; // Set player's position to the meltPlayer's position
     }
