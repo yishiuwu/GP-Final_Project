@@ -89,21 +89,39 @@ public class EffectController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(StatusSystem.Instance.ph == "neutral"){
-        //     solidAcid.SetActive(false);
-        //     solidAlkali.SetActive(false);
-        // }
-        // else if(StatusSystem.Instance.ph == "acid"){
-        //     if(!StatusSystem.Instance.isMelted){
-        //         solidAcid.SetActive(true);
-        //         solidAlkali.SetActive(false);
-        //     }
-        // }
-        // else if(StatusSystem.Instance.ph == "alkali"){
-        //     if(!StatusSystem.Instance.isMelted){
-        //         solidAcid.SetActive(false);
-        //         solidAlkali.SetActive(true);
-        //     }
-        // }
+        if(StatusSystem.Instance.ph == "neutral"){
+            solidAcid.SetActive(false);
+            solidAlkali.SetActive(false);
+            liquadAcid.SetActive(false);
+            liquadAlkali.SetActive(false);
+        }
+        else if(StatusSystem.Instance.ph == "acid"){
+            if(!StatusSystem.Instance.isMelted){
+                solidAcid.SetActive(true);
+                solidAlkali.SetActive(false);
+                liquadAcid.SetActive(false);
+                liquadAlkali.SetActive(false);  
+            }
+            else{
+                solidAcid.SetActive(false);
+                solidAlkali.SetActive(false);
+                liquadAcid.SetActive(true);
+                liquadAlkali.SetActive(false);  
+            }
+        }
+        else if(StatusSystem.Instance.ph == "alkali"){
+            if(!StatusSystem.Instance.isMelted){
+                solidAcid.SetActive(false);
+                solidAlkali.SetActive(true);
+                liquadAcid.SetActive(false);
+                liquadAlkali.SetActive(false);  
+            }
+            else{
+                solidAcid.SetActive(false);
+                solidAlkali.SetActive(false);
+                liquadAcid.SetActive(false);
+                liquadAlkali.SetActive(true);  
+            }
+        }
     }
 }
