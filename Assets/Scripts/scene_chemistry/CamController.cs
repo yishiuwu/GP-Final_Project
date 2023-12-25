@@ -63,7 +63,14 @@ public class CamController : MonoBehaviour
     }
 
     IEnumerator CallGameWin(float waitTime){
-        yield return new WaitForSeconds(waitTime);
-        // Stage.OnWin?.Invoke();
+        float startTime = Time.time;
+        float t = (Time.time - startTime)/waitTime;
+        
+        while (t < 1) {
+            yield return null;
+            t = (Time.time - startTime)/waitTime;
+        }
+        
+        GameManager.currentStage.Win();
     }
 }

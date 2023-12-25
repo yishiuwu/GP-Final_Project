@@ -30,7 +30,7 @@ public class PaperList : MonoBehaviour
             if(CheckAnswer()){
                 win = true;
                 Debug.Log("win");
-                GameManager.currentStage.Win();
+                StartCoroutine(CallGameWin(2.0f));
             }
         }
     }
@@ -41,5 +41,17 @@ public class PaperList : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    IEnumerator CallGameWin(float waitTime){
+        float startTime = Time.time;
+        float t = (Time.time - startTime)/waitTime;
+        
+        while (t < 1) {
+            yield return null;
+            t = (Time.time - startTime)/waitTime;
+        }
+        
+        GameManager.currentStage.Win();
     }
 }

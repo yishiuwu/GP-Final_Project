@@ -31,8 +31,22 @@ public class PingOutSensor : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.tag == "Player"){
-            StartCoroutine(WinAfterSeconds(1.0f, ()=>{GameManager.currentStage.Win();}));
+        Debug.Log(other);
+        if(/*other.gameObject.tag == "Player"*/ other.gameObject.tag == "bone"){
+            Debug.Log("get melt meow");
+            StartCoroutine(CallGameWin(2.0f));
         }
+    }
+
+    IEnumerator CallGameWin(float waitTime){
+        float startTime = Time.time;
+        float t = (Time.time - startTime)/waitTime;
+        
+        while (t < 1) {
+            yield return null;
+            t = (Time.time - startTime)/waitTime;
+        }
+        
+        GameManager.currentStage.Win();
     }
 }

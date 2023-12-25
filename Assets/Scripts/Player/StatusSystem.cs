@@ -53,7 +53,7 @@ public class StatusSystem : MonoBehaviour
             //Vector3 meltPlayerPosition = meltPlayer.transform.position;
             GameObject mplayer = GameObject.FindGameObjectWithTag("bone");
             Vector3 meltPlayerPosition = mplayer.transform.position; // Get the meltPlayer's current position
-            Debug.Log($"update meltPlayerPosition: {meltPlayerPosition}");
+            // Debug.Log($"update meltPlayerPosition: {meltPlayerPosition}");
 
             // Debug.Log($"meltPlayerPosition: {meltPlayerPosition}");
         }
