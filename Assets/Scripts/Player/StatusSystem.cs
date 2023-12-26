@@ -66,6 +66,10 @@ public class StatusSystem : MonoBehaviour
     private ParticleSystem liquidEffect;
     public ParticleSystem acidEffect;
     public ParticleSystem alkaliEffect;
+    public GameObject ec;
+    public GameObject ae;
+    public GameObject ale;
+
     private void MeltPlayer()
     {
         GameObject splayer = GameObject.FindGameObjectWithTag("Player");
@@ -77,19 +81,29 @@ public class StatusSystem : MonoBehaviour
         Debug.Log($"playerPosition: {playerPosition}");
         meltPlayer.transform.position = playerPosition; // Set meltPlayer's position to the player's position
         PlayerRenderer.sortingOrder = -1;
-        switch(ph){
-            case "acid":
-                liquidEffect = Instantiate(acidEffect, playerPosition, Quaternion.identity);
-                liquidEffect.gameObject.SetActive(true);
-                liquidEffect.Play();        // liquadAlkali.SetActive(false);
-                Debug.Log("get liquid acid effect");
-                break;
-            case "alkali":
-                liquidEffect = Instantiate(alkaliEffect, playerPosition, Quaternion.identity);
-                liquidEffect.gameObject.SetActive(true);
-                liquidEffect.Play();Debug.Log("get liquid alkali effect");
-                break;
+
+        if(ec != null){
+            ae.transform.SetParent(meltPlayer.transform);
+            ale.transform.SetParent(meltPlayer.transform);
+            ae.transform.localPosition = Vector3.zero;
+            ale.transform.localPosition = Vector3.zero;
+            ae.transform.localScale = Vector3.one;
+            ale.transform.localScale = Vector3.one;
         }
+
+        // switch(ph){
+        //     case "acid":
+        //         liquidEffect = Instantiate(acidEffect, playerPosition, Quaternion.identity);
+        //         liquidEffect.gameObject.SetActive(true);
+        //         liquidEffect.Play();        // liquadAlkali.SetActive(false);
+        //         Debug.Log("get liquid acid effect");
+        //         break;
+        //     case "alkali":
+        //         liquidEffect = Instantiate(alkaliEffect, playerPosition, Quaternion.identity);
+        //         liquidEffect.gameObject.SetActive(true);
+        //         liquidEffect.Play();Debug.Log("get liquid alkali effect");
+        //         break;
+        // }
     }
 
     private void SolidifyPlayer()
@@ -101,7 +115,11 @@ public class StatusSystem : MonoBehaviour
         PlayerRenderer.sortingOrder = 7;
         player.GetComponent<CapsuleCollider2D>().enabled = true;
         player.transform.position = meltPlayerPosition; // Set player's position to the meltPlayer's position
-        Destroy(liquidEffect);
+        // Destroy(liquidEffect);
+        if(ec != null){
+            ae.transform.SetParent(ec.gameObject.transform);
+            ale.transform.SetParent(ec.gameObject.transform);
+        }
     }
     private void OnStatusChanging(object sender, StatusEventArgs e)
     

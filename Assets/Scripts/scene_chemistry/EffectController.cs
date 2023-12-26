@@ -20,7 +20,7 @@ public class EffectController : MonoBehaviour
     {
         solidAcid.SetActive(false);
         solidAlkali.SetActive(false);
-        liquadAcid.SetActive(false);
+        if(liquadAcid != null) liquadAcid.SetActive(false);
         liquadAlkali.SetActive(false);
 
         DisableParticalEffect += ()=>{
@@ -88,53 +88,49 @@ public class EffectController : MonoBehaviour
     }
 
     public void getPartical(){
-        EnableParticalEffect?.Invoke();
+        // EnableParticalEffect?.Invoke();
     }
 
     public void removePartical(){
-        DisableParticalEffect?.Invoke();
+        // DisableParticalEffect?.Invoke();
     }
-
-    // [TODO] before switch status
-    // EffectController.Instance.removePartical();
-    // [TODO] after switch status
-    // EffectController.Instance.getPartical(); 
 
     // Update is called once per frame
     void Update()
     {
+        
         if(StatusSystem.Instance.ph == "neutral"){
             solidAcid.SetActive(false);
             solidAlkali.SetActive(false);
-            liquadAcid.SetActive(false);
-            liquadAlkali.SetActive(false);
+            if(liquadAcid != null) liquadAcid.SetActive(false);
+            if(liquadAlkali != null) liquadAlkali.SetActive(false);
         }
         else if(StatusSystem.Instance.ph == "acid"){
             if(!StatusSystem.Instance.isMelted){
                 solidAcid.SetActive(true);
                 solidAlkali.SetActive(false);
-                liquadAcid.SetActive(false);
-                liquadAlkali.SetActive(false);  
+                if(liquadAcid != null) liquadAcid.SetActive(false);
+                if(liquadAlkali != null) liquadAlkali.SetActive(false);
             }
             else{
                 solidAcid.SetActive(false);
                 solidAlkali.SetActive(false);
-                liquadAcid.SetActive(true);
-                liquadAlkali.SetActive(false);  
+                if(liquadAcid != null) liquadAcid.SetActive(true);
+                if(liquadAlkali != null) liquadAlkali.SetActive(false);
             }
         }
         else if(StatusSystem.Instance.ph == "alkali"){
             if(!StatusSystem.Instance.isMelted){
                 solidAcid.SetActive(false);
                 solidAlkali.SetActive(true);
-                liquadAcid.SetActive(false);
-                liquadAlkali.SetActive(false);  
+                if(liquadAcid != null) liquadAcid.SetActive(false);
+                if(liquadAlkali != null) liquadAlkali.SetActive(false);
             }
             else{
                 solidAcid.SetActive(false);
                 solidAlkali.SetActive(false);
-                liquadAcid.SetActive(false);
-                liquadAlkali.SetActive(true);  
+                if(liquadAcid != null) liquadAcid.SetActive(false);
+                if(liquadAlkali != null) liquadAlkali.SetActive(true);
             }
         }
     }
