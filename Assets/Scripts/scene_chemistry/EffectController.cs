@@ -33,40 +33,54 @@ public class EffectController : MonoBehaviour
 
         EnableParticalEffect += ()=>{
             if(!StatusSystem.Instance.isMelted){
+                GameObject mplayer = GameObject.FindGameObjectWithTag("bone");
+                Vector3 meltPlayerPosition = mplayer.transform.position;
                 switch(StatusSystem.Instance.ph){
                     case "acid":
                         solidAcid.SetActive(true);
                         solidAlkali.SetActive(false);
-                        liquadAcid.SetActive(false);
-                        liquadAlkali.SetActive(false);
+                        // liquadAcid.SetActive(true);
+                        // liquadAlkali.SetActive(false);
                         Debug.Log("get solid acid effect");
                         break;
                     case "alkali":
                         solidAcid.SetActive(false);
                         solidAlkali.SetActive(true);
-                        liquadAcid.SetActive(false);
-                        liquadAlkali.SetActive(false);
+                        // liquadAcid.SetActive(false);
+                        // liquadAlkali.SetActive(true);
                         Debug.Log("get solid alkali effect");
                         break;
                 }
+                // liquadAcid.transform.position = meltPlayerPosition;
+                // liquadAlkali.transform.position = meltPlayerPosition;
+                // solidAcid.transform.position = meltPlayerPosition;
+                // solidAlkali.transform.position = meltPlayerPosition;
             }
             else if(StatusSystem.Instance.isMelted){
+                GameObject mplayer = GameObject.FindGameObjectWithTag("bone");
+                Vector3 meltPlayerPosition = mplayer.transform.position;
                 switch(StatusSystem.Instance.ph){
                     case "acid":
-                        solidAcid.SetActive(false);
-                        solidAlkali.SetActive(false);
-                        liquadAcid.SetActive(true);
-                        liquadAlkali.SetActive(false);
-                        Debug.Log("get melt acid effect");
+                        Instantiate(liquadAcid, meltPlayerPosition, Quaternion.identity);
+                        // solidAcid.SetActive(true);
+                        // solidAlkali.SetActive(false);
+                        // liquadAcid.SetActive(true);
+                        // liquadAlkali.SetActive(false);
+                        Debug.Log("get liquid acid effect");
                         break;
                     case "alkali":
-                        solidAcid.SetActive(false);
-                        solidAlkali.SetActive(false);
-                        liquadAcid.SetActive(false);
-                        liquadAlkali.SetActive(true);
-                        Debug.Log("get melt alkali effect");
+                        Instantiate(liquadAlkali, meltPlayerPosition, Quaternion.identity);
+                        // solidAcid.SetActive(false);
+                        // solidAlkali.SetActive(true);
+                        // liquadAcid.SetActive(false);
+                        // liquadAlkali.SetActive(true);
+                        Debug.Log("get liquid alkali effect");
                         break;
                 }
+                // liquadAcid.transform.position = meltPlayerPosition;
+                // liquadAlkali.transform.position = meltPlayerPosition;
+                // solidAcid.transform.position = meltPlayerPosition;
+                // solidAlkali.transform.position = meltPlayerPosition;
             }
         };
 

@@ -63,7 +63,9 @@ public class StatusSystem : MonoBehaviour
             // Debug.Log($"playerPosition: {playerPosition}");
         }
     }
-
+    private ParticleSystem liquidEffect;
+    public ParticleSystem acidEffect;
+    public ParticleSystem alkaliEffect;
     private void MeltPlayer()
     {
         GameObject splayer = GameObject.FindGameObjectWithTag("Player");
@@ -75,6 +77,19 @@ public class StatusSystem : MonoBehaviour
         Debug.Log($"playerPosition: {playerPosition}");
         meltPlayer.transform.position = playerPosition; // Set meltPlayer's position to the player's position
         PlayerRenderer.sortingOrder = -1;
+        switch(ph){
+            case "acid":
+                liquidEffect = Instantiate(acidEffect, playerPosition, Quaternion.identity);
+                liquidEffect.gameObject.SetActive(true);
+                liquidEffect.Play();        // liquadAlkali.SetActive(false);
+                Debug.Log("get liquid acid effect");
+                break;
+            case "alkali":
+                liquidEffect = Instantiate(alkaliEffect, playerPosition, Quaternion.identity);
+                liquidEffect.gameObject.SetActive(true);
+                liquidEffect.Play();Debug.Log("get liquid alkali effect");
+                break;
+        }
     }
 
     private void SolidifyPlayer()
@@ -86,6 +101,7 @@ public class StatusSystem : MonoBehaviour
         PlayerRenderer.sortingOrder = 7;
         player.GetComponent<CapsuleCollider2D>().enabled = true;
         player.transform.position = meltPlayerPosition; // Set player's position to the meltPlayer's position
+        Destroy(liquidEffect);
     }
     private void OnStatusChanging(object sender, StatusEventArgs e)
     
