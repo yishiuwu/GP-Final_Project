@@ -22,6 +22,8 @@ public class FanInteract : InteractiveObj
     }
     void Update(){
         if(fanOn){
+            GameObject objectToDeactivate = GameObject.Find("tips");
+            objectToDeactivate.SetActive(false);
             FanLeaf.GetComponent<Animator>().SetBool("FanOn", true);
             //Debug.Log($"fan melt pos: {bones.localPosition}");
             if (playerRb.position.y <= -0.5f)

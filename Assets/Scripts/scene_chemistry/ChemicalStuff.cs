@@ -85,9 +85,19 @@ public class ChemicalStuff : MonoBehaviour
                 transform.position += smallOffset;
 
                 if(ph == "acid")
+                {
+                    GameObject objectToDeactivate = GameObject.Find("tips1");
+                    objectToDeactivate.SetActive(false);
                     StatusSystem.Instance.Ph2Ac();
+                }
+                    
                 else if(ph == "alkali")
+                {
+                    GameObject objectToDeactivate = GameObject.Find("tips2");
+                    objectToDeactivate.SetActive(false);
                     StatusSystem.Instance.Ph2Al();
+                }
+                    
 
                 if(num <= 1){
                     touchingCat = false;
