@@ -350,6 +350,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1289101343064740459, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289101343064740459, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1647658749765067779, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -706,6 +714,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4763720349043302343, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 126d63a3cdf22dd4bbf64531ae29e11a, type: 3}
     - target: {fileID: 4907994803788216132, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -768,6 +780,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8095644298049896139, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082429029903614857, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082429029903614857, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082429029903614857, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

@@ -157,7 +157,7 @@ PrefabInstance:
     - target: {fileID: 3192309829479872190, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: f5ba4a40625ddbf409825ca0baa2c1a0, type: 3}
+      objectReference: {fileID: 8300000, guid: 69c9796d1b491d945af5e08157286f79, type: 3}
     - target: {fileID: 5023124559783844000, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
       propertyPath: m_Name
       value: StageGameManager
