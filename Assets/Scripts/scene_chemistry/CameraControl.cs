@@ -5,7 +5,7 @@ using System;
 
 public class CameraControl : MonoBehaviour
 {
-    Vector3 iniPos;
+    public Vector3 iniPos;
     public float Dump = 0.6f;
 
     public float iniCamSize = 5.0f;
@@ -18,9 +18,9 @@ public class CameraControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        iniPos = new Vector3(-0.4f, 0.3f, -10.0f);
-        paperPos = new Vector3(-4.5f, -1.0f, -10.0f);
-        powderPos = new Vector3(5.0f, -1.0f, -10.0f);
+        if(iniPos == null) iniPos = new Vector3(-0.4f, 0.3f, -10.0f);
+        if(paperPos == null) paperPos = new Vector3(-4.5f, -1.0f, -10.0f);
+        if(powderPos == null) powderPos = new Vector3(5.0f, -1.0f, -10.0f);
 
         transform.position = iniPos;
         Camera.main.orthographicSize = iniCamSize;
