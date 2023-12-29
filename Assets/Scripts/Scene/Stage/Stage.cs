@@ -19,6 +19,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private GameObject winMenu;
     [SerializeField] private WordMovement startMove;
     [SerializeField] private WordMovement winMove;
+    [SerializeField] private Book book;
 
 
     void Start() {
@@ -30,7 +31,7 @@ public class Stage : MonoBehaviour
         OnTogglePause += ()=>{pauseMenu.Toggle();};
         // OnWin += ()=>{winMenu.SetActive(true);}
         OnStart += ()=>{startMove.StartMove();};
-        OnWin += ()=>{winMove.StartMove(LeaveStage);};
+        OnWin += ()=>{winMove.StartMove(()=>{StartCoroutine(WinRoutine());});};
     }
 
     void OnDestroy() {
@@ -54,6 +55,13 @@ public class Stage : MonoBehaviour
 
     public void Win() {
         OnWin?.Invoke();
+        // StartCoroutine(WinRoutine());
+    }
+    IEnumerator WinRoutine() {
+        book.Open();
+        yield return new WaitForSeconds(3.0f);
+        LeaveStage();
+        yield break;
     }
 
     public void Restart() {

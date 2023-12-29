@@ -29,18 +29,28 @@ public class Book : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         for(int i = 0; i < features.Length; i++){
             features[i].canvasRenderer.SetAlpha(0);
             getFeatrue[i] = false;
         }
-        CheckFeatures();
+        Close();
+        // CheckFeatures();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Open() {
+        gameObject.SetActive(true);
+        CheckFeatures();
     }
+    public void Close() {
+        gameObject.SetActive(false);
+    }
+
+    public void Toggle() {
+        if (gameObject.activeSelf) Close();
+        else Open();
+    }
+    
 
     public void CheckFeatures(){
         for(int i = 0; i < features.Length; i++){

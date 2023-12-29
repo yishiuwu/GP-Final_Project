@@ -25,7 +25,7 @@ public class WordMovement : MonoBehaviour
         StartCoroutine(MoveCard(callback));
     }
 
-    IEnumerator MoveCard(Action callback) {
+    public IEnumerator MoveCard(Action callback) {
         float startTime = Time.time;
         float t = (Time.time - startTime)/ioDur;
         // Debug.Log(t);
