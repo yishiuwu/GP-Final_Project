@@ -6,7 +6,7 @@ using UnityEngine;
 public class TransformEffect : TransitionEffect
 {
     [SerializeField] AnimationCurve moveCurve;
-    Vector3 centerPosition = new Vector3(960, 540, 0);
+    readonly Vector3 centerPosition = new Vector3(960, 540, 0);
     
     // void Awake() {
     //     centerPosition = transform.position;

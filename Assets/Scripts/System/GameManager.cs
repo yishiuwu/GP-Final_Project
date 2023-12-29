@@ -15,11 +15,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         sceneTransition = GetComponent<SceneTransition>();
-        Menu menu = GetComponentInChildren<Menu>();
-        if (menu) {
-            menu.OnOpen += MouseOn;
-            menu.OnClose += MouseOff;
-        }
+        // Menu menu = GetComponentInChildren<Menu>();
+        // menu.OnOpen += MouseOn;
+        // menu.OnClose += MouseOff;
         MouseOff();
     }
 
@@ -33,11 +31,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void MouseOff() {
+        Debug.Log("mouse off");
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void MouseOn() {
+        Debug.Log("mouse on");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }

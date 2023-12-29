@@ -59,7 +59,7 @@ public class CamController : MonoBehaviour
         StartCoroutine(StartMove(iniPos, targetPos, iniCamSize, focusCamSize, 2, ()=>{
             Debug.Log("in");
             Debug.Log(Camera.main.orthographicSize);
-            StartCoroutine(StartMove(targetPos, iniPos, focusCamSize, iniCamSize, 2, ()=>{ Debug.Log("out");}));
+            StartCoroutine(StartMove(targetPos, iniPos, focusCamSize, iniCamSize, 2, ()=>{ GameManager.currentStage.StartGame(); Debug.Log("out");}));
         }));
     }
 
