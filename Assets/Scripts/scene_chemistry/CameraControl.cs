@@ -43,7 +43,7 @@ public class CameraControl : MonoBehaviour
             StartCoroutine(StartMove(paperPos, iniPos, papreFocusSize, iniCamSize, 2, ()=>{ 
                 //Focus on powder
                 StartCoroutine(StartMove(iniPos, powderPos, iniCamSize, powderFocusSize, 2, ()=>{
-                    StartCoroutine(StartMove(powderPos, iniPos, powderFocusSize, iniCamSize, 2));
+                    StartCoroutine(StartMove(powderPos, iniPos, powderFocusSize, iniCamSize, 2, ()=>{GameManager.currentStage.StartGame();}));
                 }));
             }));
         }));

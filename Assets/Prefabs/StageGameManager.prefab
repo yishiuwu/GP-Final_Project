@@ -567,6 +567,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2625633979783710567, guid: a59b907bc9663dc459b61cc0f9c5583a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2875110241137420061, guid: a59b907bc9663dc459b61cc0f9c5583a, type: 3}
       propertyPath: m_Type
       value: 0
@@ -591,6 +595,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 629be987365bc0542a6e55d8e44e349e, type: 3}
+    - target: {fileID: 4022410573953996708, guid: a59b907bc9663dc459b61cc0f9c5583a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4620910565128119139, guid: a59b907bc9663dc459b61cc0f9c5583a, type: 3}
       propertyPath: m_SizeDelta.x
       value: 600
@@ -696,6 +704,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8118164526840673042, guid: a59b907bc9663dc459b61cc0f9c5583a, type: 3}
+      propertyPath: winMove
+      value: 
+      objectReference: {fileID: 8430331147885011405}
+    - target: {fileID: 8118164526840673042, guid: a59b907bc9663dc459b61cc0f9c5583a, type: 3}
       propertyPath: nextStage
       value: 
       objectReference: {fileID: 0}
@@ -703,6 +715,10 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 4331050787965496893}
+    - target: {fileID: 8118164526840673042, guid: a59b907bc9663dc459b61cc0f9c5583a, type: 3}
+      propertyPath: startMove
+      value: 
+      objectReference: {fileID: 4761005583724010708}
     - target: {fileID: 8118164526840673044, guid: a59b907bc9663dc459b61cc0f9c5583a, type: 3}
       propertyPath: m_Name
       value: Stage
@@ -787,6 +803,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 6dadfc62dd6f2274c9e36f78d24a0d90, type: 3}
+    - target: {fileID: 2296405223866123560, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
+      propertyPath: volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2381305259633045628, guid: fbed1094f865efb4eb9312737bc5f46a, type: 3}
       propertyPath: m_RootOrder
       value: 4

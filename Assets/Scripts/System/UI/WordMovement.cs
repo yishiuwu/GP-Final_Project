@@ -16,8 +16,8 @@ public class WordMovement : MonoBehaviour
     {
         transform.position = centerPosition + Vector3.right * Screen.width;
         // Debug.Log(transform.position.ToString());
-        if (isWin) GameManager.currentStage.OnWin += ()=>{StartMove(()=>{GameManager.sceneTransition.ChangeScene("StageSelect");});};
-        else GameManager.currentStage.OnStart += ()=>{StartMove();};
+        // if (isWin) GameManager.currentStage.OnWin += ()=>{StartMove(()=>{GameManager.sceneTransition.ChangeScene("StageSelect");});};
+        // else GameManager.currentStage.OnStart += ()=>{StartMove();};
     }
 
     public void StartMove(Action callback = null) {

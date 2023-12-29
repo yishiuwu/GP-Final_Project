@@ -20,6 +20,7 @@ public class StageNode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DataManager.Set(DataManager.stageKey, 4);
         DataManager.Load(DataManager.stageKey, 1, out int openedStage);
         isLock = id > openedStage;
         if (isLock) {

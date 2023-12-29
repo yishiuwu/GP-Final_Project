@@ -17,7 +17,8 @@ public class Stage : MonoBehaviour
     [SerializeField]
     private Menu pauseMenu;
     [SerializeField] private GameObject winMenu;
-    [SerializeField] private
+    [SerializeField] private WordMovement startMove;
+    [SerializeField] private WordMovement winMove;
 
 
     void Start() {
@@ -27,7 +28,9 @@ public class Stage : MonoBehaviour
 
         OnRestart += ()=>{OnStart?.Invoke();}; // need change scene effect
         OnTogglePause += ()=>{pauseMenu.Toggle();};
-        // OnWin += ()=>{winMenu.SetActive(true);};
+        // OnWin += ()=>{winMenu.SetActive(true);}
+        OnStart += ()=>{startMove.StartMove();};
+        OnWin += ()=>{winMove.StartMove(LeaveStage);};
     }
 
     void OnDestroy() {
