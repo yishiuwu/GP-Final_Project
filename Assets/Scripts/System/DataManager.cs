@@ -4,6 +4,8 @@ static public class DataManager
 {
     static public string stageKey = "OpenedStage";
     static public string openNextKey = "OpenNextStage";
+    static public string volumeKey = "Volume";
+    static public string ismutedKey = "IsMute";
     // Initialize data
     static public bool Init() {
 
