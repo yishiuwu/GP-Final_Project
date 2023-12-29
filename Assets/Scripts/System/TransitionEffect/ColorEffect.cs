@@ -12,7 +12,7 @@ public class ColorEffect : TransitionEffect
 
     void Start()
     {
-        SetColor(Color.white);
+        // SetColor(Color.white);
         // Debug.Log(image.ToString());
     }
 

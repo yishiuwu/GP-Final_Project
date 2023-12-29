@@ -41,7 +41,7 @@ public class SceneTransition : MonoBehaviour
         // Debug.Log(colorEffect);
     }
     void Start() {
-        gameManager.OnSceneLoaded += SceneLoadedEffect;
+        // gameManager.OnSceneLoaded += SceneLoadedEffect;
         SceneLoadedEffect();
     }
 
