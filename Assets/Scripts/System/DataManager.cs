@@ -37,4 +37,8 @@ static public class DataManager
         PlayerPrefs.Save();
     }
 
+    public static bool CheckValue(string key){
+        // 1 true, 0 false
+        return PlayerPrefs.GetInt(key, 0) == 1;
+    }
 }
