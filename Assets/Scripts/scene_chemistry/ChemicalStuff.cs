@@ -87,14 +87,18 @@ public class ChemicalStuff : MonoBehaviour
                 if(ph == "acid")
                 {
                     GameObject objectToDeactivate = GameObject.Find("tips1");
-                    objectToDeactivate.SetActive(false);
+                    if(objectToDeactivate)
+                        objectToDeactivate.SetActive(false);
+
                     StatusSystem.Instance.Ph2Ac();
                 }
                     
                 else if(ph == "alkali")
                 {
                     GameObject objectToDeactivate = GameObject.Find("tips2");
-                    objectToDeactivate.SetActive(false);
+                    if(objectToDeactivate)
+                        objectToDeactivate.SetActive(false);
+                        
                     StatusSystem.Instance.Ph2Al();
                 }
                     
