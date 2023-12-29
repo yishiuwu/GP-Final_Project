@@ -26,7 +26,7 @@ public class PipeLineCtrl : MonoBehaviour
             mplayer = GameObject.FindGameObjectWithTag("MeltPlayer");
             if(CheckPos(mplayer)){
                 GameObject objectToDeactivate = GameObject.Find("tips");
-                objectToDeactivate.SetActive(false);
+                if(objectToDeactivate != null) objectToDeactivate.SetActive(false);
                 Debug.Log($"CheckPos: {CheckPos(mplayer)}, IsMelt: {playerstate.isMelted}");
                 Linked = true;
                 spriteRenderer.sprite = litSprite;

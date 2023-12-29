@@ -3389,11 +3389,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f8646432883e5478798da3571df659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iniPos: {x: 0, y: 0, z: 0}
+  iniPos: {x: -0.4, y: 0.3, z: -10}
   Dump: 0.6
   iniCamSize: 5.2
-  paperPos: {x: 0, y: 0, z: 0}
-  powderPos: {x: 0, y: 0, z: 0}
+  paperPos: {x: -4.5, y: -1, z: -10}
+  powderPos: {x: 5, y: -1, z: -10}
   papreFocusSize: 2.9
   powderFocusSize: 2.5
 --- !u!1 &1529397574

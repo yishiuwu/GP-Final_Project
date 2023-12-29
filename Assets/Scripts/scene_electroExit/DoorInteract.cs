@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DoorInteract : InteractiveObj
 {
@@ -66,4 +67,25 @@ public class DoorInteract : InteractiveObj
         // DoorSkin.SetActive(true);
     }
     
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.tag == "Player" || other.gameObject.tag == "bone"){
+            if(DoorOpen){
+                StartCoroutine(WaitForTime(1.0f, ()=>{
+                    GameManager.currentStage.Win();
+                }));
+            }
+        }
+    }
+
+    IEnumerator WaitForTime(float waitTime, Action callback = null){
+        float startTime = Time.time;
+        float t = (Time.time - startTime)/waitTime;
+        
+        while (t < 1) {
+            yield return null;
+            t = (Time.time - startTime)/waitTime;
+        }
+
+        callback?.Invoke();
+    }
 }
