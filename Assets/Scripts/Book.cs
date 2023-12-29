@@ -16,6 +16,14 @@ public class Book : MonoBehaviour
         "Chemistry"
     };
 
+    private string[] gotFeatureKeys = new string[]
+    {
+        "LabTrapGotten",
+        "FanGotten",
+        "ElectricityGotten",
+        "ChemistryGotten"
+    };
+
     public bool[] getFeatrue = {false, false, false, false, false};
 
     // Start is called before the first frame update
@@ -25,6 +33,7 @@ public class Book : MonoBehaviour
             features[i].canvasRenderer.SetAlpha(0);
             getFeatrue[i] = false;
         }
+        CheckFeatures();
     }
 
     // Update is called once per frame
@@ -36,19 +45,23 @@ public class Book : MonoBehaviour
     public void CheckFeatures(){
         for(int i = 0; i < features.Length; i++){
             if(DataManager.CheckValue(keys[i]) && !getFeatrue[i]){
-                features[i].canvasRenderer.SetAlpha(1);
+                // have gotten feature before
+                if(DataManager.CheckValue(keys[i] + "Gotten")){
+                    features[i].canvasRenderer.SetAlpha(1);
+                }
+                // get new feature
+                else{
+                    GetNewFeature(features[i]);
+                    DataManager.Set(keys[i] + "Gotten", 1);
+                }
+
+                getFeatrue[i] = true;
             }
         }
     }
 
-    public void GetNewFeature(string key){
-        for(int i = 0; i < features.Length; i++){
-            if(keys[i] == key){
-                if(DataManager.CheckValue(keys[i]) && !getFeatrue[i]){
-                    StartCoroutine(FadeInFeature(features[i], 1.5f));
-                }
-            }
-        }
+    public void GetNewFeature(Image feature){
+        StartCoroutine(FadeInFeature(feature, 1.5f));
     }
 
     IEnumerator FadeInFeature(Image feature, float duration, Action callback = null){
