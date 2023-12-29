@@ -43,28 +43,28 @@ public class StageSelect : MonoBehaviour
 
     public void MoveUp(InputAction.CallbackContext context) {
         if (context.phase == InputActionPhase.Performed && !isMoving) {
-            Debug.Log("move up");
+            // Debug.Log("move up");
             isMoving = true;
             StartCoroutine(Move(currentNode, currentNode.navigation.upNode));
         }
     }
     public void MoveDown(InputAction.CallbackContext context) {
         if (context.phase == InputActionPhase.Performed && !isMoving) {
-            Debug.Log("move down");
+            // Debug.Log("move down");
             isMoving = true;
             StartCoroutine(Move(currentNode, currentNode.navigation.downNode));
         }
     }
     public void MoveLeft(InputAction.CallbackContext context) {
         if (context.phase == InputActionPhase.Performed && !isMoving) {
-            Debug.Log("move left");
+            // Debug.Log("move left");
             isMoving = true;
             StartCoroutine(Move(currentNode, currentNode.navigation.leftNode));
         }
     }
     public void MoveRight(InputAction.CallbackContext context) {
         if (context.phase == InputActionPhase.Performed && !isMoving) {
-            Debug.Log("move right");
+            // Debug.Log("move right");
             isMoving = true;
             StartCoroutine(Move(currentNode, currentNode.navigation.rightNode));
         }
@@ -72,7 +72,7 @@ public class StageSelect : MonoBehaviour
 
     // move from "from" node to "to" node
     IEnumerator Move(StageNode from, StageNode to) {
-        if (to == null) {
+        if (to == null || to.isLock == true) {
             isMoving = false;
             yield break;
         }

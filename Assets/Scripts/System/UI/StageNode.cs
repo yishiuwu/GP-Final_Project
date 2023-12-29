@@ -12,15 +12,22 @@ public class StageNode : MonoBehaviour
         public StageNode upNode, downNode, leftNode, rightNode;
     }
     public bool isLock = true;
-    [SerializeField]
-    public Navigation navigation;
+    [SerializeField] int id;
+    [SerializeField] public Navigation navigation;
     [SpaceAttribute]
     public UnityEvent OnInvoke;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        DataManager.Load(DataManager.stageKey, 1, out int openedStage);
+        isLock = id > openedStage;
+        if (isLock) {
+            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+            Color newColor = sprite.color;
+            newColor.a = 150;
+            sprite.color = newColor;
+        }
     }
 
     // Update is called once per frame

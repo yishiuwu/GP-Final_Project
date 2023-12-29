@@ -8,13 +8,13 @@ public class TransformEffect : TransitionEffect
     [SerializeField] AnimationCurve moveCurve;
     Vector3 centerPosition;
     
-    void Awake() {
-        centerPosition = transform.position;
-    }
+    // void Awake() {
+    //     centerPosition = transform.position;
+    // }
     // Start is called before the first frame update
     void Start()
     {
-        
+        centerPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -68,7 +68,8 @@ public class TransformEffect : TransitionEffect
         float startTime = Time.time;
         float t = (Time.time - startTime)/duration;
         
-        Debug.Log(t);
+        // Debug.Log(t);
+        // Debug.Log(image);
         while (t < 1) {
             image.transform.position = Vector3.Lerp(from, to, moveCurve.Evaluate(t));
             yield return null;

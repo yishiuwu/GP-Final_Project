@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class Menu : MonoBehaviour
 {
     public bool isOpen = false;
-    Action OnOpen, OnClose;
+    public Action OnOpen, OnClose;
 
     // Start is called before the first frame update
     void Start()
