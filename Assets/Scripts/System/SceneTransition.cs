@@ -15,9 +15,18 @@ public class SceneTransition : MonoBehaviour
     TransformEffect transformEffect;
     GameManager gameManager;
 
-    [SerializeField] UnityEvent InSceneEffect;
-    [SerializeField] UnityEvent OutSceneEffect;
-
+    public enum TransitionEffect {Color, Transform};
+    public enum TransformDirection {Up, Down, Left, Right};
+    [SpaceAttribute]
+    public TransitionEffect inEffect;
+    public TransformDirection inDirection;
+    [SpaceAttribute]
+    public TransitionEffect outEffect;
+    public TransformDirection outDirection;
+    // [SerializeField] UnityEvent InSceneEffect;
+    // [SerializeField] UnityEvent OutSceneEffect;
+    [SpaceAttribute]
+    public UnityEvent OnSceneChange;
     bool isLoading;
     
     // private static SceneTransition instance = null;
@@ -43,12 +52,35 @@ public class SceneTransition : MonoBehaviour
     }
 
     public void SceneLoadedEffect() {
-        if (colorEffect) {
-            // white -> clear
-            colorEffect.SetColor(Color.white);
-            // colorEffect.SetFadeColor(Color.clear);
-            // colorEffect.SetFadeDuration(transistDuration);
-            colorEffect.StartFade(Color.clear, transistDuration);
+        // if (colorEffect) {
+        //     // white -> clear
+        //     colorEffect.SetColor(Color.white);
+        //     // colorEffect.SetFadeColor(Color.clear);
+        //     // colorEffect.SetFadeDuration(transistDuration);
+        //     colorEffect.StartFade(Color.clear, transistDuration);
+        // }
+        switch (inEffect) {
+            case TransitionEffect.Color:
+                // white -> clear
+                colorEffect.SetColor(Color.white);
+                colorEffect.StartFade(Color.clear, transistDuration);
+                break;
+            case TransitionEffect.Transform:
+                switch (inDirection) {
+                    case TransformDirection.Up:
+                        transformEffect.UpOut();
+                        break;
+                    case TransformDirection.Down:
+                        transformEffect.DownOut();
+                        break;
+                    case TransformDirection.Left:
+                        transformEffect.LeftOut();
+                        break;
+                    case TransformDirection.Right:
+                        transformEffect.RightOut();
+                        break;
+                }
+                break;
         }
         // if (transformEffect) {
         //     transformEffect.DownIn();
@@ -60,6 +92,8 @@ public class SceneTransition : MonoBehaviour
         Debug.Log("Change to scene: " + sceneName);
         // todo: add callback (end effect)
         isLoading = true; 
+        OnSceneChange?.Invoke();
+
         colorEffect.StartFade(Color.white, transistDuration, ()=>{
             StartCoroutine(Loading(sceneName));
         });

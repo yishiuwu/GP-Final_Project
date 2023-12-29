@@ -1,5 +1,9 @@
+using UnityEngine;
+
 static public class DataManager 
 {
+    static public string stageKey = "OpenedStage";
+    static public string openNextKey = "OpenNextStage";
     // Initialize data
     static public bool Init() {
 
@@ -7,9 +11,30 @@ static public class DataManager
     }
 
     // Load data in to game
-    static public bool Load(string key) {
+    static public void Load(string key, string defaultValue, out string data) {
+        data = PlayerPrefs.GetString(key, defaultValue);
+    }
+    static public void Load(string key, int defaultValue, out int data) {
+        data = PlayerPrefs.GetInt(key, defaultValue);
+    }
+    static public void Load(string key, float defaultValue, out float data) {
+        data = PlayerPrefs.GetFloat(key);
+    }
 
-        return true;
+    // Save in-game data
+    static public void Set(string key, string data) {
+        PlayerPrefs.SetString(key, data);
+    }
+    static public void Set(string key, int data) {
+        PlayerPrefs.SetInt(key, data);
+    }
+    static public void Set(string key, float data) {
+        PlayerPrefs.SetFloat(key, data);
+    }
+
+    // Don't call unless necessary
+    static public void Save() {
+        PlayerPrefs.Save();
     }
 
 }

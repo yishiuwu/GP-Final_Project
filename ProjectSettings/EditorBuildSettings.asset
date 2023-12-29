@@ -23,5 +23,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlaySceneOne.unity
     guid: 32b2405bfdb73714e83d8d712de9dec9
+  - enabled: 1
+    path: Assets/Scenes/PlaySceneChemistry.unity
+    guid: 713d6d6058c0df948a11bb13449bf405
+  - enabled: 1
+    path: Assets/Scenes/PlaySceneElectroExit.unity
+    guid: 3b048a6bf9310c14c89d251869561a05
+  - enabled: 1
+    path: Assets/Scenes/PlaySceneLabTrap.unity
+    guid: 1164eeacccf40cf4e82565eeb735eb6e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 99f35cdb32d6557419ca70438fbd8079, type: 2}

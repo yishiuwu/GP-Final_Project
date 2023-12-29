@@ -15,6 +15,8 @@ public class TransitionEffect : MonoBehaviour
     void Awake()
     {
         image = GetComponent<Image>();
+        // if (image) Debug.Log("get image success");
+        // else Debug.Log("get image fail");
     }
 
 }

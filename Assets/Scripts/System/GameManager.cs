@@ -1,11 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+
 
 [RequireComponent(typeof(SceneTransition))]
 public class GameManager : MonoBehaviour
@@ -14,10 +10,17 @@ public class GameManager : MonoBehaviour
     public static Stage currentStage;
     public static SceneTransition sceneTransition;
     public string upperScene;
+    public AudioClip bgm;
     // Start is called before the first frame update
     void Start()
     {
         sceneTransition = GetComponent<SceneTransition>();
+        Menu menu = GetComponentInChildren<Menu>();
+        if (menu) {
+            menu.OnOpen += MouseOn;
+            menu.OnClose += MouseOff;
+        }
+        MouseOff();
     }
 
     public void LeaveGame() {
@@ -27,5 +30,15 @@ public class GameManager : MonoBehaviour
 
     public void ToUpperScene() {
         sceneTransition.ChangeScene(upperScene);
+    }
+
+    public void MouseOff() {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void MouseOn() {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

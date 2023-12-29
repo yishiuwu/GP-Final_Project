@@ -20,7 +20,7 @@ public class ColorEffect : TransitionEffect
         float startTime = Time.time;
         float t = (Time.time - startTime)/duration;
         Color from = image.color;
-        Debug.Log(t);
+        // Debug.Log(t);
         while (t < 1) {
             image.color = Color.Lerp(from, to, t);
             yield return null;
