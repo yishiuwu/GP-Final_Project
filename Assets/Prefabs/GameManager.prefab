@@ -385,6 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 0
+  gameManager: {fileID: 3162872359221785054}
 --- !u!1 &2850915864009667391
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,10 +633,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transistDuration: 1
-  inEffect: 0
+  inEffect: 1
   inDirection: 0
-  outEffect: 0
-  outDirection: 0
+  outEffect: 1
+  outDirection: 1
   OnSceneChange:
     m_PersistentCalls:
       m_Calls:

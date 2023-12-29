@@ -94,9 +94,42 @@ public class SceneTransition : MonoBehaviour
         isLoading = true; 
         OnSceneChange?.Invoke();
 
-        colorEffect.StartFade(Color.white, transistDuration, ()=>{
-            StartCoroutine(Loading(sceneName));
-        });
+        // colorEffect.StartFade(Color.white, transistDuration, ()=>{
+        //     StartCoroutine(Loading(sceneName));
+        // });
+
+        switch (outEffect) {
+            case TransitionEffect.Color:
+                // white -> clear
+                colorEffect.StartFade(Color.white, transistDuration, ()=>{
+                    StartCoroutine(Loading(sceneName));
+                });
+                break;
+            case TransitionEffect.Transform:
+                switch (outDirection) {
+                    case TransformDirection.Up:
+                        transformEffect.UpIn(()=>{
+                            StartCoroutine(Loading(sceneName));
+                        });
+                        break;
+                    case TransformDirection.Down:
+                        transformEffect.DownIn(()=>{
+                            StartCoroutine(Loading(sceneName));
+                        });
+                        break;
+                    case TransformDirection.Left:
+                        transformEffect.LeftIn(()=>{
+                            StartCoroutine(Loading(sceneName));
+                        });
+                        break;
+                    case TransformDirection.Right:
+                        transformEffect.RightIn(()=>{
+                            StartCoroutine(Loading(sceneName));
+                        });
+                        break;
+                }
+                break;
+        }
         // StartCoroutine(Loading(sceneName));
     }
 

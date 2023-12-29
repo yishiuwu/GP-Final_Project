@@ -7,13 +7,16 @@ using UnityEngine.Events;
 public class Menu : MonoBehaviour
 {
     public bool isOpen = false;
-    public Action OnOpen, OnClose;
+    public event Action OnOpen, OnClose;
+    [SerializeField] GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         OnOpen += ()=>{gameObject.SetActive(true);};
+        OnOpen += gameManager.MouseOn;
         OnClose += ()=>{gameObject.SetActive(false);};
+        OnClose += gameManager.MouseOff;
         Close();
     }
 

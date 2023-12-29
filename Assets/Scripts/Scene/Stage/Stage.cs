@@ -15,19 +15,19 @@ public class Stage : MonoBehaviour
 
     [Space]
     [SerializeField]
-    private GameObject pauseMenu;
-    [SerializeField]
-    private GameObject winMenu;
+    private Menu pauseMenu;
+    [SerializeField] private GameObject winMenu;
+    [SerializeField] private
+
 
     void Start() {
         GameManager.currentStage = this;
         FindObjectOfType<GameManager>().upperScene = "StageSelect";
-        pauseMenu.SetActive(false);
         winMenu.SetActive(false);
 
         OnRestart += ()=>{OnStart?.Invoke();}; // need change scene effect
-        OnTogglePause += ()=>{pauseMenu.SetActive(!pauseMenu.activeSelf);};
-        OnWin += ()=>{winMenu.SetActive(true);};
+        OnTogglePause += ()=>{pauseMenu.Toggle();};
+        // OnWin += ()=>{winMenu.SetActive(true);};
     }
 
     void OnDestroy() {
@@ -42,6 +42,11 @@ public class Stage : MonoBehaviour
 
     public void TogglePause() {
         OnTogglePause?.Invoke();
+    }
+
+    public void StartGame() {
+        Debug.Log("start game");
+        OnStart?.Invoke();
     }
 
     public void Win() {
