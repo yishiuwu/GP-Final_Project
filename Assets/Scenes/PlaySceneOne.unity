@@ -1887,7 +1887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipsParticleSystem: {fileID: 1050147115}
-  m_sec: 10
+  m_sec: 20
 --- !u!198 &1050147115 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4437293291615511268, guid: ff89dc7a62712dc468d8ac2c661c0e77, type: 3}
