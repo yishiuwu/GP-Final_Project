@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void LeaveGame() {
+        Menu menu = GetComponentInChildren<Menu>();
+        if (menu && menu.isOpen) {
+            menu.Close();
+            return;
+        }
         Debug.Log("leaving game...");
         Application.Quit();
     }
