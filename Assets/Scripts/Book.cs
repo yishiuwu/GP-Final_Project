@@ -33,6 +33,8 @@ public class Book : MonoBehaviour
         for(int i = 0; i < features.Length; i++){
             features[i].color = new Color(1, 1, 1, 0);
             getFeatrue[i] = false;
+            // DataManager.Set(keys[i], 0);
+            // DataManager.Set(keys[i] + "Gotten", 0);
         }
         Close();
         // CheckFeatures();
