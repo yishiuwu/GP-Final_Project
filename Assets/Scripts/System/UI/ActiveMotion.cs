@@ -24,7 +24,7 @@ public class ActiveMotion : MonoBehaviour
     IEnumerator ActiveMove(Vector3 from, Vector3 to, float dur) {
         float t = 0, startTime = Time.time;
         while (t<1) {
-            transform.position = Vector3.Lerp(from, to, moveCurve.Evaluate(t));
+            // transform.position = Vector3.Lerp(from, to, moveCurve.Evaluate(t));
             yield return null;
             t = (Time.time - startTime)/dur;
         }
@@ -33,7 +33,7 @@ public class ActiveMotion : MonoBehaviour
     IEnumerator InactiveMove(Vector3 from, Vector3 to, float dur) {
         float t = 0, startTime = Time.time;
         while (t<1) {
-            transform.position = Vector3.Lerp(from, to, moveCurve.Evaluate(t));
+            // transform.position = Vector3.Lerp(from, to, moveCurve.Evaluate(t));
             yield return null;
             t = (Time.time - startTime)/dur;
         }
