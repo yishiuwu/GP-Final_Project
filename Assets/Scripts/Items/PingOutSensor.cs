@@ -47,6 +47,7 @@ public class PingOutSensor : MonoBehaviour
             t = (Time.time - startTime)/waitTime;
         }
         
+        DataManager.Set("LabTrap", 1);
         GameManager.currentStage.Win();
     }
 }
