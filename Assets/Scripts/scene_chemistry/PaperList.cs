@@ -52,6 +52,7 @@ public class PaperList : MonoBehaviour
             t = (Time.time - startTime)/waitTime;
         }
         
+        DataManager.Set("Chemistry", 1);
         GameManager.currentStage.Win();
     }
 }

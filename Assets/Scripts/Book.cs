@@ -24,14 +24,14 @@ public class Book : MonoBehaviour
         "ChemistryGotten"
     };
 
-    public bool[] getFeatrue = {false, false, false, false, false};
+    public bool[] getFeatrue = {false, false, false, false};
 
     // Start is called before the first frame update
     void Start()
     {
 
         for(int i = 0; i < features.Length; i++){
-            features[i].canvasRenderer.SetAlpha(0);
+            features[i].color = new Color(1, 1, 1, 0);
             getFeatrue[i] = false;
         }
         Close();
@@ -54,10 +54,20 @@ public class Book : MonoBehaviour
 
     public void CheckFeatures(){
         for(int i = 0; i < features.Length; i++){
-            if(DataManager.CheckValue(keys[i]) && !getFeatrue[i]){
+            int got = 0;
+            DataManager.Load(keys[i], 0, out got);
+            Debug.Log(keys[i]);
+            Debug.Log(got);
+
+            if(/*DataManager.CheckValue(keys[i])*/ got == 1 && !getFeatrue[i]){
+                Debug.Log("get stage cleared");
+                Debug.Log(keys[i]);
                 // have gotten feature before
-                if(DataManager.CheckValue(keys[i] + "Gotten")){
-                    features[i].canvasRenderer.SetAlpha(1);
+
+                int gotten = 0;
+                DataManager.Load(keys[i] + "Gotten", 0, out gotten);
+                if(/*DataManager.CheckValue(keys[i] + "Gotten")*/ gotten == 1){
+                    features[i].color = new Color(1, 1, 1, 1);
                 }
                 // get new feature
                 else{
@@ -75,10 +85,17 @@ public class Book : MonoBehaviour
     }
 
     IEnumerator FadeInFeature(Image feature, float duration, Action callback = null){
-
-        feature.CrossFadeAlpha(1.0f, duration, false);
-
-        yield return new WaitForSeconds(duration);
+        float startTime = Time.time;
+        float t = (Time.time - startTime)/duration;
+        
+        // Debug.Log(t);
+        while (t < 1) {
+            feature.color = new Color(1, 1, 1, t);
+            yield return null;
+            t = (Time.time - startTime)/duration;
+            // Debug.Log(t);
+        }
+        feature.color = new Color(1, 1, 1, 1);
 
         callback?.Invoke();
     }

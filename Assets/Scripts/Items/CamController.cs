@@ -104,6 +104,11 @@ public class CamController : MonoBehaviour
             t = (Time.time - startTime)/waitTime;
         }
         
+        DataManager.Set("LabTrap", 1);
+        // int got = 0;
+        // DataManager.Load("LabTrap", 0, out got);
+        //     Debug.Log("LabTrap");
+        //     Debug.Log(got);
         GameManager.currentStage.Win();
     }
 

@@ -71,6 +71,7 @@ public class DoorInteract : InteractiveObj
         if(other.gameObject.tag == "Player" || other.gameObject.tag == "bone"){
             if(DoorOpen){
                 StartCoroutine(WaitForTime(1.0f, ()=>{
+                    DataManager.Set("Electricity", 1);
                     GameManager.currentStage.Win();
                 }));
             }

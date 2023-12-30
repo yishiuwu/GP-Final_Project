@@ -21,6 +21,7 @@ public class Exit : MonoBehaviour
         // Debug.Log(other.gameObject.tag);
         if(/*other.gameObject.tag == "Player" || */other.gameObject.tag == "bone" && StatusSystem.Instance.isMelted){
             StartCoroutine(WaitForTime(1.0f, ()=>{
+                DataManager.Set("Fan", 1);
                 GameManager.currentStage.Win();
             }));
         }

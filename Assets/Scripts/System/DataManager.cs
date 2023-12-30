@@ -41,6 +41,8 @@ static public class DataManager
 
     public static bool CheckValue(string key){
         // 1 true, 0 false
+        Debug.Log(key);
+        Debug.Log(PlayerPrefs.GetInt(key, 0));
         return PlayerPrefs.GetInt(key, 0) == 1;
     }
 }
