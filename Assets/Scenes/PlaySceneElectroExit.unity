@@ -2308,6 +2308,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1178319809285057264, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178319809285057264, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178319809285057264, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3048318809298853437, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2422,6 +2434,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5858533587297039570, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201610898559367954, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201610898559367954, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2670,7 +2690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipsParticleSystem: {fileID: 1663313122}
-  m_sec: 10
+  m_sec: 20
 --- !u!198 &1663313122 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4437293291615511268, guid: ff89dc7a62712dc468d8ac2c661c0e77, type: 3}
