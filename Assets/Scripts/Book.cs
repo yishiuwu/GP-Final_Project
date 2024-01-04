@@ -40,6 +40,16 @@ public class Book : MonoBehaviour
         // CheckFeatures();
     }
 
+    public void ClearRecord(){
+        for(int i = 0; i < features.Length; i++){
+            DataManager.Set(keys[i], 0);
+            DataManager.Set(keys[i] + "Gotten", 0);
+            features[i].color = new Color(1, 1, 1, 0);
+            getFeatrue[i] = false;
+        }
+        CheckFeatures();
+    }
+
     public void Open() {
         gameObject.SetActive(true);
         CheckFeatures();
