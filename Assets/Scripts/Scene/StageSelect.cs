@@ -22,6 +22,12 @@ public class StageSelect : MonoBehaviour
         }
         // catAvt = GetComponentInChildren<CatAvater>().gameObject;
         catAvt.transform.position = currentNode.transform.position + avtOffset;
+
+        GameManager gm = FindObjectOfType<GameManager>();
+        if (gm != null) {
+            gm.menu.OnOpen += OnMenuOpen;
+            gm.menu.OnClose += OnMenuClose;
+        }
     }
 
     // Update is called once per frame
@@ -32,6 +38,13 @@ public class StageSelect : MonoBehaviour
 
     public void OpenStage(string stageName) {
         GameManager.sceneTransition.ChangeScene(stageName);
+    }
+
+    void OnMenuOpen() {
+        isMoving = true;
+    }
+    void OnMenuClose() {
+        isMoving = false;
     }
 
     public void Enter(InputAction.CallbackContext context) {

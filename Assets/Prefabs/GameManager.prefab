@@ -161,7 +161,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 750fcb0eade7de3419d6c0a061b4ded3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -319,7 +319,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 0
-  gameManager: {fileID: 3162872359221785054}
 --- !u!1 &3162872358441046459
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperScene: 
   bgm: {fileID: 0}
+  menu: {fileID: 5929979801103222596}
 --- !u!114 &3162872359221785055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,9 +531,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transistDuration: 1
-  inEffect: 1
+  inEffect: 0
   inDirection: 0
-  outEffect: 1
+  outEffect: 0
   outDirection: 1
   OnSceneChange:
     m_PersistentCalls:
@@ -577,9 +577,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5929979801103222596}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: Toggle
+      - m_Target: {fileID: 3162872359221785054}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LeaveGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2136,18 +2136,18 @@ PrefabInstance:
     - target: {fileID: 704278570740487365, guid: 232b096f3c408cd4e967a487cd38f994, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3162872359221785054}
+      objectReference: {fileID: 5929979801103222596}
     - target: {fileID: 704278570740487365, guid: 232b096f3c408cd4e967a487cd38f994, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 704278570740487365, guid: 232b096f3c408cd4e967a487cd38f994, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToUpperScene
+      value: Close
       objectReference: {fileID: 0}
     - target: {fileID: 704278570740487365, guid: 232b096f3c408cd4e967a487cd38f994, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Assembly-CSharp
+      value: Menu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 704278570740487365, guid: 232b096f3c408cd4e967a487cd38f994, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
