@@ -7,17 +7,20 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public event Action OnSceneLoaded;
+    public static event Action OnMenuToggle;
     public static Stage currentStage;
     public static SceneTransition sceneTransition;
     public string upperScene;
     public AudioClip bgm;
+    [SerializeField] public Menu menu;
     // Start is called before the first frame update
     void Start()
     {
         sceneTransition = GetComponent<SceneTransition>();
         // Menu menu = GetComponentInChildren<Menu>();
-        // menu.OnOpen += MouseOn;
-        // menu.OnClose += MouseOff;
+        menu.OnOpen += MouseOn;
+        menu.OnClose += MouseOff;
+
         MouseOff();
     }
 

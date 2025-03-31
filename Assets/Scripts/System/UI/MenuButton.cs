@@ -23,6 +23,8 @@ public class MenuButton : Button
 
     override public void OnPointerEnter(PointerEventData eventData)
     {
+        this.transform.Find("Image");
         Select();
     }
+
 }
