@@ -12,6 +12,7 @@ public class Stage : MonoBehaviour
     public event Action OnTogglePause; // toggle pause
 
     public string nextStage;
+    public int stageId;
 
     [Space]
     [SerializeField]
@@ -54,6 +55,12 @@ public class Stage : MonoBehaviour
     }
 
     public void Win() {
+        int stage;
+        DataManager.Load(DataManager.stageKey, 1, out stage);
+        Debug.Log("stage:" + stage);
+        if (stage <= stageId) {
+            DataManager.Set(DataManager.stageKey, stageId+1);
+        }
         OnWin?.Invoke();
         // StartCoroutine(WinRoutine());
     }

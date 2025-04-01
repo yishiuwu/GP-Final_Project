@@ -8,9 +8,16 @@ static public class DataManager
     static public string ismutedKey = "IsMute";
     // Initialize data
     static public bool Init() {
-
+        Set(stageKey, 1);
+        Set(volumeKey, 100);
+        Set(ismutedKey, 0);
         return true;
     }
+    static public bool Reset() {
+        Set(stageKey, 1);
+        return true;
+    }
+    
 
     // Load data in to game
     static public void Load(string key, string defaultValue, out string data) {

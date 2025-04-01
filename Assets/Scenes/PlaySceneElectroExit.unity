@@ -2320,6 +2320,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2231811977054836805, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
+      propertyPath: stageId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3048318809298853437, guid: 8686c88cfb8e30a4d8faaf0d076c19de, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

@@ -49,4 +49,9 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
+
+    public void ResetGame() {
+        DataManager.Reset();
+        sceneTransition.ChangeScene("Main");
+    }
 }
